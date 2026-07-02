@@ -1,0 +1,38 @@
+<!doctype html><html><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  html,body{margin:0;width:1584px;height:396px;overflow:hidden;font-family:'Space Grotesk',sans-serif}
+  .stage{position:relative;width:1584px;height:396px;
+    background:radial-gradient(90% 160% at 18% 30%, #19153a 0%, #0E0D18 50%, #0B0C10 100%);}
+  .grid{position:absolute;inset:0;opacity:.5;
+    background-image:radial-gradient(rgba(167,139,250,.16) 1.1px, transparent 1.1px);
+    background-size:26px 26px;-webkit-mask:linear-gradient(90deg,#000,transparent 70%);mask:linear-gradient(90deg,#000,transparent 70%);}
+  .glow{position:absolute;width:640px;height:640px;left:-120px;top:-180px;border-radius:50%;
+    background:radial-gradient(circle, rgba(124,92,255,.32), rgba(124,92,255,0) 68%);filter:blur(6px);}
+  .glow2{position:absolute;width:520px;height:520px;right:-160px;bottom:-220px;border-radius:50%;
+    background:radial-gradient(circle, rgba(167,139,250,.20), rgba(167,139,250,0) 68%);}
+  .row{position:absolute;left:90px;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:38px}
+  .icon{width:220px;height:220px;flex:none;filter:drop-shadow(0 14px 30px rgba(20,8,55,.5))}
+  .name{font-size:78px;font-weight:700;letter-spacing:1px;line-height:1;color:#F5F6FA}
+  .name .sub{color:#A78BFA;font-weight:500}
+  .tag{margin-top:18px;font-family:'JetBrains Mono',monospace;font-weight:500;font-size:22px;letter-spacing:7px;color:#8B8D98}
+  .pillrow{margin-top:22px;display:flex;gap:14px}
+  .pill{font-family:'JetBrains Mono',monospace;font-size:15px;letter-spacing:2px;color:#C4B5FD;
+    border:1px solid #2C2A45;border-radius:999px;padding:7px 16px;background:rgba(124,92,255,.07)}
+</style></head>
+<body>
+  <div class="stage">
+    <div class="glow"></div><div class="glow2"></div><div class="grid"></div>
+    <div class="row">
+      <img class="icon" src="../public/brand/mark.svg">
+      <div>
+        <div class="name">MSAK<span class="sub"> IT HUB</span></div>
+        <div class="tag">PAKISTAN'S TRUSTED IT PARTNER</div>
+        <div class="pillrow">
+          <span class="pill">SOFTWARE</span><span class="pill">WEB &amp; CLOUD</span><span class="pill">SECURE · SCALABLE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body></html>

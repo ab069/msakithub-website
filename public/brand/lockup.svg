@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 160" fill="none">
+  <defs>
+    <linearGradient id="frame" x1="20" y1="20" x2="108" y2="108" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7C5CFF"/><stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+    <linearGradient id="coreFace" x1="48" y1="80" x2="80" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6A45FF"/><stop offset="1" stop-color="#A78BFA"/>
+    </linearGradient>
+    <radialGradient id="hub" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset="0.4" stop-color="#C4B5FD"/><stop offset="1" stop-color="#7C5CFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- emblem -->
+  <svg x="8" y="12" width="136" height="136" viewBox="0 0 128 128">
+    <g stroke="#A78BFA" stroke-width="2.4" stroke-linecap="round" opacity="0.85">
+      <line x1="64" y1="45" x2="64" y2="28"/><line x1="64" y1="83" x2="64" y2="100"/>
+      <line x1="42" y1="64" x2="26" y2="64"/><line x1="86" y1="64" x2="102" y2="64"/>
+      <line x1="53" y1="45" x2="41" y2="33"/><line x1="75" y1="45" x2="87" y2="33"/>
+      <line x1="53" y1="83" x2="41" y2="95"/><line x1="75" y1="83" x2="87" y2="95"/>
+    </g>
+    <polygon points="40,16 88,16 112,64 88,112 40,112 16,64" stroke="url(#frame)" stroke-width="4.5" stroke-linejoin="round" fill="none"/>
+    <polygon points="44,23 84,23 105,64 84,105 44,105 23,64" stroke="#A78BFA" stroke-width="1.4" stroke-linejoin="round" fill="none" opacity="0.45"/>
+    <g fill="#C4B5FD">
+      <circle cx="40" cy="16" r="2.6"/><circle cx="88" cy="16" r="2.6"/><circle cx="112" cy="64" r="2.6"/>
+      <circle cx="88" cy="112" r="2.6"/><circle cx="40" cy="112" r="2.6"/><circle cx="16" cy="64" r="2.6"/>
+      <circle cx="64" cy="28" r="3.2"/><circle cx="64" cy="100" r="3.2"/><circle cx="26" cy="64" r="3.2"/><circle cx="102" cy="64" r="3.2"/>
+      <circle cx="41" cy="33" r="2.8"/><circle cx="87" cy="33" r="2.8"/><circle cx="41" cy="95" r="2.8"/><circle cx="87" cy="95" r="2.8"/>
+    </g>
+    <polygon points="53,45 75,45 86,64 75,83 53,83 42,64" fill="url(#coreFace)"/>
+    <polygon points="53,45 75,45 86,64 75,83 53,83 42,64" stroke="#E9E3FF" stroke-width="1.6" stroke-linejoin="round" opacity="0.55"/>
+    <circle cx="64" cy="64" r="16" fill="url(#hub)"/>
+    <circle cx="64" cy="64" r="5.5" fill="#FFFFFF"/>
+    <circle cx="64" cy="64" r="9" stroke="#E9E3FF" stroke-width="1.2" opacity="0.5" fill="none"/>
+  </svg>
+
+  <text x="168" y="86" font-family="'Space Grotesk', sans-serif" font-size="50" letter-spacing="0.5">
+    <tspan fill="#F5F6FA" font-weight="700">MSAK</tspan><tspan fill="#A78BFA" font-weight="500"> IT HUB</tspan>
+  </text>
+  <text x="170" y="116" font-family="'JetBrains Mono', monospace" font-size="14.5" letter-spacing="4.5" fill="#8B8D98" font-weight="500">PAKISTAN'S TRUSTED IT PARTNER</text>
+</svg>

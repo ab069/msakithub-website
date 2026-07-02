@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="tile" x1="14" y1="10" x2="86" y2="92" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1A1730"/><stop offset="1" stop-color="#0D0C16"/>
+    </linearGradient>
+    <linearGradient id="ink" x1="30" y1="70" x2="70" y2="30" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#7C5CFF"/><stop offset="0.6" stop-color="#A78BFA"/><stop offset="1" stop-color="#C4B5FD"/>
+    </linearGradient>
+    <radialGradient id="spark" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#FFFFFF"/><stop offset="0.5" stop-color="#C4B5FD"/><stop offset="1" stop-color="#7C5CFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect x="4" y="4" width="92" height="92" rx="24" fill="url(#tile)"/>
+  <rect x="4.5" y="4.5" width="91" height="91" rx="23.5" stroke="#2A2742"/>
+  <polyline points="29,71 29,33 50,55 71,33 71,71" stroke="url(#ink)" stroke-width="12"
+    stroke-linecap="square" stroke-linejoin="miter" stroke-miterlimit="8" fill="none"/>
+  <circle cx="50" cy="30" r="10" fill="url(#spark)"/>
+  <path d="M50 22.5 L51.3 28.7 L57.5 30 L51.3 31.3 L50 37.5 L48.7 31.3 L42.5 30 L48.7 28.7 Z" fill="#F1ECFF"/>
+</svg>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://msakithub.com/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://msakithub.com/about</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://msakithub.com/services</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://msakithub.com/projects</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://msakithub.com/blog</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://msakithub.com/blog/future-of-web-development-2025</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://msakithub.com/blog/custom-software-vs-off-the-shelf</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://msakithub.com/blog/ui-ux-design-for-conversions</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://msakithub.com/blog/design-systems-that-scale</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://msakithub.com/blog/cloud-migration-without-downtime</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://msakithub.com/blog/modern-react-patterns</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://msakithub.com/contact</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+</urlset>
