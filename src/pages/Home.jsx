@@ -45,28 +45,73 @@ const bullets = [
 
 const stack = ['React', 'Node.js', 'Flutter', 'Laravel', 'AWS', 'Figma', 'Next.js', 'Shopify'];
 
-/* 3D tilt for bento panels — ±4°, perspective 800px */
-function tiltHandlers(reduce) {
-  if (reduce) return {};
-  return {
-    onMouseMove: (e) => {
-      const el = e.currentTarget;
-      const r = el.getBoundingClientRect();
-      const px = (e.clientX - r.left) / r.width - 0.5;
-      const py = (e.clientY - r.top) / r.height - 0.5;
-      el.style.transform = `perspective(800px) rotateX(${-py * 4}deg) rotateY(${px * 4}deg)`;
-    },
-    onMouseLeave: (e) => {
-      e.currentTarget.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg)';
-    },
-  };
-}
+const testimonials = [
+  {
+    q: 'MSAK rebuilt our online storefront from scratch — the new site loads in under a second and looks exactly like the moodboards we shared. Sales went up in the first month.',
+    n: 'Superdecor',
+    r: 'Interior & Home Décor',
+  },
+  {
+    q: 'Booking used to be handled over WhatsApp and it was chaos. Their team designed a calm, professional booking platform that our clients actually enjoy using. Communication was thoughtful throughout.',
+    n: 'Healing Minds',
+    r: 'Mental Wellness Studio',
+  },
+  {
+    q: 'Deadlines were tight and expectations were high. MSAK delivered a polished corporate site and CRM integration on schedule with zero surprises. Real professionals.',
+    n: 'Sunry Consultants',
+    r: 'Business Advisory',
+  },
+  {
+    q: 'What impressed us most was the transparency. Weekly walkthroughs, clean code, clear reporting. It felt like an in-house team, not an agency.',
+    n: 'Zaks Consultants',
+    r: 'Management Consulting',
+  },
+  {
+    q: 'The MSAK team understood our brand almost instantly. The custom platform they built is fast, secure and easy for our staff to maintain — exactly what we asked for.',
+    n: 'iSubhan',
+    r: 'Digital Services',
+  },
+  {
+    q: 'We came in with a rough idea and left with a production-ready product. Their engineering discipline and design sensibility are hard to find in one shop.',
+    n: 'Ddigi Core',
+    r: 'Creative & Digital Agency',
+  },
+];
 
 export default function Home() {
   useSeo({
-    title: '',
     description: 'MSAK IT Hub is a Pakistan-based IT and software company delivering custom software, web and mobile apps, design, marketing and IT consultancy — engineered for outcomes.',
     path: '/',
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        '@id': 'https://msakithub.com/#webpage',
+        'url': 'https://msakithub.com/',
+        'name': "MSAK IT Hub — Pakistan's Trusted IT & Software Partner",
+        'description': 'Pakistan-based IT and software company delivering custom software, web and mobile apps, design, marketing and IT consultancy.',
+        'isPartOf': { '@id': 'https://msakithub.com/#website' },
+        'about': { '@id': 'https://msakithub.com/#organization' },
+        'breadcrumb': {
+          '@type': 'BreadcrumbList',
+          'itemListElement': [{ '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://msakithub.com/' }],
+        },
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        'name': 'IT & Software Services by MSAK IT Hub',
+        'url': 'https://msakithub.com/services',
+        'itemListElement': [
+          { '@type': 'ListItem', 'position': 1, 'name': 'Custom Software Development', 'url': 'https://msakithub.com/services#software' },
+          { '@type': 'ListItem', 'position': 2, 'name': 'Web Development', 'url': 'https://msakithub.com/services#web' },
+          { '@type': 'ListItem', 'position': 3, 'name': 'Mobile App Development', 'url': 'https://msakithub.com/services#mobile' },
+          { '@type': 'ListItem', 'position': 4, 'name': 'Digital Marketing', 'url': 'https://msakithub.com/services#marketing' },
+          { '@type': 'ListItem', 'position': 5, 'name': 'UI/UX Design', 'url': 'https://msakithub.com/services#design' },
+          { '@type': 'ListItem', 'position': 6, 'name': 'IT Consultancy', 'url': 'https://msakithub.com/services#consultancy' },
+        ],
+      },
+    ],
   });
   const root = useRef(null);
   const heroRef = useRef(null);
@@ -115,13 +160,6 @@ export default function Home() {
   useEffect(() => {
     if (reduce) return;
     const ctx = gsap.context(() => {
-      gsap.to('.hero-inner', {
-        yPercent: 18,
-        opacity: 0.25,
-        ease: 'none',
-        scrollTrigger: { trigger: heroRef.current, start: 'top top', end: 'bottom top', scrub: true },
-      });
-
       gsap.utils.toArray('[data-reveal]').forEach((el) => {
         gsap.from(el, {
           y: 50, opacity: 0, duration: 0.9, ease: 'power3.out',
@@ -183,7 +221,7 @@ export default function Home() {
             trigger: section,
             start: 'top top',
             end: 'bottom bottom',
-            scrub: 1,
+            scrub: true,
             invalidateOnRefresh: true,
             onUpdate: (self) => {
               if (railRef.current) railRef.current.style.transform = `scaleX(${self.progress})`;
@@ -246,7 +284,7 @@ export default function Home() {
       <section ref={statsRef} className="border-y border-line bg-surface">
         <div className="max-w-site mx-auto px-5 md:px-10 grid grid-cols-1 sm:grid-cols-3">
           {[
-            { v: 10, s: '+', l: 'Years of Combined Experience' },
+            { v: 5, s: '+', l: 'Years of Combined Experience' },
             { v: 100, s: '%', l: 'Client Satisfaction' },
             { v: 50, s: '+', l: 'Projects Delivered' },
           ].map((st, i) => (
@@ -317,9 +355,7 @@ export default function Home() {
                 key={s.n}
                 to={s.href}
                 data-cursor="view"
-                {...tiltHandlers(reduce)}
-                className={`flood spot group p-8 md:p-10 flex flex-col justify-between will-change-transform ${s.big ? 'sm:col-span-2 sm:row-span-2' : ''}`}
-                style={{ transition: 'transform 0.3s ease-out, border-color 0.35s ease' }}
+                className={`flood spot group p-8 md:p-10 flex flex-col justify-between ${s.big ? 'sm:col-span-2 sm:row-span-2' : ''}`}
               >
                 <div className="flex items-start justify-between">
                   <span className="flood-eyebrow mono text-[10px] uppercase tracking-[0.22em] text-muted">{s.n}</span>
@@ -361,6 +397,43 @@ export default function Home() {
           {featured.map((p, i) => (
             <ProjectCard key={p.repo} project={p} index={i} />
           ))}
+        </div>
+      </section>
+
+      {/* ───────────── TESTIMONIALS — client voices ───────────── */}
+      <section className="border-y border-line bg-surface">
+        <div className="max-w-site mx-auto px-5 md:px-10 py-24 md:py-36">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
+            <div>
+              <div className="flex items-center gap-3 mb-6" data-reveal>
+                <span className="w-8 h-px bg-accent" /><Scramble text="Client Voices" />
+              </div>
+              <TextReveal text="Trusted by teams we've helped grow." as="h2" className="font-display t-h2 text-white" />
+            </div>
+            <p className="text-muted text-sm max-w-sm leading-relaxed" data-reveal>
+              A few words from businesses we've partnered with across software, design and consulting.
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5" data-stagger>
+            {testimonials.map((t) => (
+              <figure
+                key={t.n}
+                className="card-hov relative flex flex-col justify-between p-7 md:p-8 bg-bg/60 border border-line h-full"
+              >
+                <svg className="text-accent mb-6 shrink-0" width="26" height="20" viewBox="0 0 26 20" fill="currentColor" aria-hidden="true">
+                  <path d="M0 20V11.5C0 5.15 3.55 1.05 10.65 0v3.6C6.35 4.6 4.4 6.85 4.4 10h4.35V20H0zm15.35 0V11.5C15.35 5.15 18.9 1.05 26 0v3.6c-4.3 1-6.25 3.25-6.25 6.4h4.35V20H15.35z" opacity="0.7"/>
+                </svg>
+                <blockquote className="text-white/85 text-[15px] leading-relaxed flex-1">
+                  {t.q}
+                </blockquote>
+                <figcaption className="mt-6 pt-5 border-t border-line">
+                  <div className="font-display text-white text-lg leading-tight">{t.n}</div>
+                  <div className="mono text-[10px] uppercase tracking-[0.18em] text-muted mt-1.5">{t.r}</div>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
         </div>
       </section>
 

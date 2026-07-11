@@ -1,12 +1,9 @@
 import { useEffect } from 'react';
 
-/**
- * Per-route SEO without a runtime dep. Updates <title>, meta description,
- * canonical, OG and Twitter tags directly on document.head when a page
- * mounts. Resets on unmount-free since the next page just overrides them.
- */
 const BASE = 'https://msakithub.com';
 const DEFAULT_IMG = `${BASE}/brand/banner.png`;
+const SITE_NAME = 'MSAK IT Hub';
+const DEFAULT_TITLE = `${SITE_NAME} — Pakistan's Trusted IT & Software Partner`;
 
 function setMeta(selector, attr, value) {
   if (!value) return;
@@ -31,19 +28,35 @@ function setLink(rel, href) {
   el.setAttribute('href', href);
 }
 
+function injectLd(data) {
+  const items = Array.isArray(data) ? data : [data];
+  return items.map((schema) => {
+    const el = document.createElement('script');
+    el.type = 'application/ld+json';
+    el.dataset.routeLd = '1';
+    el.textContent = JSON.stringify(schema);
+    document.head.appendChild(el);
+    return el;
+  });
+}
+
+function removeLd(els) {
+  els.forEach((el) => el.parentNode && el.parentNode.removeChild(el));
+}
+
 export default function useSeo({
   title,
   description,
   path = '',
   image = DEFAULT_IMG,
+  imageAlt,
   type = 'website',
   jsonLd,
 } = {}) {
   useEffect(() => {
-    const fullTitle = title
-      ? `${title} — MSAK IT Hub`
-      : 'MSAK IT Hub — Pakistan’s Trusted IT & Software Partner';
-    const url = `${BASE}${path || ''}`;
+    const fullTitle = title ? `${title} — ${SITE_NAME}` : DEFAULT_TITLE;
+    const url = `${BASE}${path}`;
+    const imgAlt = imageAlt || fullTitle;
 
     document.title = fullTitle;
     setMeta('meta[name="description"]', 'content', description);
@@ -53,22 +66,15 @@ export default function useSeo({
     setMeta('meta[property="og:description"]', 'content', description);
     setMeta('meta[property="og:url"]', 'content', url);
     setMeta('meta[property="og:image"]', 'content', image);
+    setMeta('meta[property="og:image:alt"]', 'content', imgAlt);
     setMeta('meta[property="og:type"]', 'content', type);
 
     setMeta('meta[name="twitter:title"]', 'content', fullTitle);
     setMeta('meta[name="twitter:description"]', 'content', description);
     setMeta('meta[name="twitter:image"]', 'content', image);
+    setMeta('meta[name="twitter:image:alt"]', 'content', imgAlt);
 
-    let ldEl = null;
-    if (jsonLd) {
-      ldEl = document.createElement('script');
-      ldEl.type = 'application/ld+json';
-      ldEl.dataset.routeLd = '1';
-      ldEl.textContent = JSON.stringify(jsonLd);
-      document.head.appendChild(ldEl);
-    }
-    return () => {
-      if (ldEl && ldEl.parentNode) ldEl.parentNode.removeChild(ldEl);
-    };
-  }, [title, description, path, image, type, JSON.stringify(jsonLd || null)]);
+    const injected = jsonLd ? injectLd(jsonLd) : [];
+    return () => removeLd(injected);
+  }, [title, description, path, image, imageAlt, type, jsonLd]);
 }

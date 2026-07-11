@@ -1,12 +1,10 @@
 import { lazy, Suspense, useEffect, useLayoutEffect, useRef } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import Lenis from '@studio-freight/lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
-import Cursor from './components/Cursor.jsx';
 import ScrollProgress from './components/ScrollProgress.jsx';
 import Orbs from './components/Orbs.jsx';
 
@@ -26,17 +24,15 @@ const Contact       = lazy(() => import('./pages/Contact.jsx'));
 
 gsap.registerPlugin(ScrollTrigger);
 
-function ScrollManager({ lenisRef }) {
+function ScrollManager() {
   const { pathname } = useLocation();
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
     document.documentElement.scrollTop = 0;
     document.body.scrollTop = 0;
-    const lenis = lenisRef.current;
-    if (lenis) lenis.scrollTo(0, { immediate: true, force: true });
     const id = setTimeout(() => ScrollTrigger.refresh(), 120);
     return () => clearTimeout(id);
-  }, [pathname, lenisRef]);
+  }, [pathname]);
   return null;
 }
 
@@ -56,24 +52,7 @@ function RouteWipe() {
   return <div ref={ref} className="route-wipe" style={{ transform: 'scaleY(0)' }} />;
 }
 
-function useSpotlight() {
-  useEffect(() => {
-    if (window.matchMedia('(hover: none)').matches) return;
-    const onMove = (e) => {
-      const card = e.target.closest && e.target.closest('.spot');
-      if (!card) return;
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', `${e.clientX - r.left}px`);
-      card.style.setProperty('--my', `${e.clientY - r.top}px`);
-    };
-    document.addEventListener('mousemove', onMove, { passive: true });
-    return () => document.removeEventListener('mousemove', onMove);
-  }, []);
-}
-
 export default function App() {
-  const lenisRef = useRef(null);
-  useSpotlight();
   window.__APP_READY__ = true;
 
   useEffect(() => {
@@ -81,23 +60,13 @@ export default function App() {
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual';
     }
-    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
-    lenisRef.current = lenis;
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => lenis.raf(time * 1000));
-    gsap.ticker.lagSmoothing(0);
-    return () => {
-      lenis.destroy();
-      gsap.ticker.remove((time) => lenis.raf(time * 1000));
-    };
   }, []);
 
   return (
     <BrowserRouter>
       <div className="noise">
-        <Cursor />
         <ScrollProgress />
-        <ScrollManager lenisRef={lenisRef} />
+        <ScrollManager />
         <RouteWipe />
         <Navbar />
         <div className="site-content">

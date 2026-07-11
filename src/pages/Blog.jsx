@@ -15,8 +15,23 @@ const filters = ['All', 'Design', 'Development', 'Technology'];
 export default function Blog() {
   useSeo({
     title: 'Blog',
-    description: 'Editorial insights on web, mobile, design, marketing and IT consultancy from the MSAK IT Hub team.',
+    description: 'Insights on web development, mobile apps, UI/UX design, digital marketing and IT consultancy from the MSAK IT Hub team in Pakistan.',
     path: '/blog',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      'url': 'https://msakithub.com/blog',
+      'name': 'MSAK IT Hub Blog',
+      'description': 'Insights on web development, mobile apps, design, marketing and IT consultancy.',
+      'publisher': { '@id': 'https://msakithub.com/#organization' },
+      'breadcrumb': {
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://msakithub.com/' },
+          { '@type': 'ListItem', 'position': 2, 'name': 'Blog', 'item': 'https://msakithub.com/blog' },
+        ],
+      },
+    },
   });
   const root = useRef(null);
   const filterBarRef = useRef(null);

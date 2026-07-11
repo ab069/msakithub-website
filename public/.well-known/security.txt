@@ -1,0 +1,5 @@
+Contact: mailto:info@msakithub.com
+Expires: 2027-07-01T00:00:00.000Z
+Preferred-Languages: en, ur
+Canonical: https://msakithub.com/.well-known/security.txt
+Policy: https://msakithub.com/security

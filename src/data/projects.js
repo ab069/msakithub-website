@@ -13,7 +13,7 @@ export const projects = [
     desc: "A modern TypeScript web application.",
     tags: ["TypeScript"],
     featured: true,
-    image: null,
+    image: "/projects/kumospace.svg",
   },
   {
     name: "WebHost",
@@ -23,7 +23,7 @@ export const projects = [
     desc: "A web hosting management platform built with JavaScript.",
     tags: ["JavaScript"],
     featured: true,
-    image: null,
+    image: "/projects/webhost.svg",
   },
   {
     name: "Nutraelixoria",
@@ -33,7 +33,7 @@ export const projects = [
     desc: "Modern storefront for nutrition and wellness products with a TypeScript front-end and PostgreSQL data layer.",
     tags: ["TypeScript", "PostgreSQL", "E-Commerce"],
     featured: true,
-    image: null,
+    image: "/projects/nutraelixoria.svg",
   },
   {
     name: "Portfolio",
@@ -43,7 +43,7 @@ export const projects = [
     desc: "Bespoke personal portfolio site built for a client, focused on clean typography and smooth presentation.",
     tags: ["TypeScript", "CSS"],
     featured: true,
-    image: null,
+    image: "/projects/bakht-portfolio.svg",
   },
   {
     name: "Portfolio",
@@ -54,7 +54,7 @@ export const projects = [
     tags: ["TypeScript", "HTML", "CSS"],
     live: "https://anas-portolio.vercel.app",
     featured: true,
-    image: null,
+    image: "/projects/anas-portfolio.svg",
   },
   {
     name: "VapeHub Pro POS",
@@ -65,7 +65,7 @@ export const projects = [
     tags: ["TypeScript", "Serverless", "POS"],
     live: "https://vapehub-pro-pos.vercel.app",
     featured: false,
-    image: null,
+    image: "/projects/vapehub-pos.svg",
   },
   {
     name: "Household Services",
@@ -75,7 +75,7 @@ export const projects = [
     desc: "Household services marketplace connecting users with home-service providers.",
     tags: ["JavaScript", "HTML", "CSS"],
     featured: false,
-    image: null,
+    image: "/projects/household-services.svg",
   },
   {
     name: "Portfolio",
@@ -86,6 +86,6 @@ export const projects = [
     tags: ["TypeScript", "HTML", "CSS"],
     live: "https://portfolio-anasbalochhs-projects.vercel.app",
     featured: false,
-    image: null,
+    image: "/projects/portfolio-2025.svg",
   },
 ];

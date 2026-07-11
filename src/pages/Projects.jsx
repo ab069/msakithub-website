@@ -12,8 +12,23 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Projects() {
   useSeo({
     title: 'Work',
-    description: 'Selected projects shipped by MSAK IT Hub — web apps, mobile apps and custom software for startups, SMEs and global teams.',
+    description: 'Selected projects shipped by MSAK IT Hub — custom software, web apps, mobile apps and digital solutions for startups, SMEs and enterprises in Pakistan.',
     path: '/projects',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      'url': 'https://msakithub.com/projects',
+      'name': 'Projects — MSAK IT Hub',
+      'description': 'A curated portfolio of custom software, web and mobile apps delivered by MSAK IT Hub.',
+      'creator': { '@id': 'https://msakithub.com/#organization' },
+      'breadcrumb': {
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://msakithub.com/' },
+          { '@type': 'ListItem', 'position': 2, 'name': 'Work', 'item': 'https://msakithub.com/projects' },
+        ],
+      },
+    },
   });
   const root = useRef(null);
   const [filter, setFilter] = useState('All');

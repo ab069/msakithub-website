@@ -32,12 +32,23 @@ export default function BlogPost() {
           jsonLd: {
             '@context': 'https://schema.org',
             '@type': 'BlogPosting',
-            headline: post.title,
-            description: post.excerpt,
-            author: { '@type': 'Organization', name: post.author },
-            publisher: { '@type': 'Organization', name: 'MSAK IT Hub' },
-            datePublished: post.date,
-            mainEntityOfPage: `https://msakithub.com/blog/${post.slug}`,
+            '@id': `https://msakithub.com/blog/${post.slug}`,
+            'headline': post.title,
+            'description': post.excerpt,
+            'author': { '@type': 'Organization', '@id': 'https://msakithub.com/#organization', 'name': 'MSAK IT Hub' },
+            'publisher': { '@id': 'https://msakithub.com/#organization' },
+            'datePublished': post.date,
+            'image': 'https://msakithub.com/brand/banner.png',
+            'mainEntityOfPage': { '@type': 'WebPage', '@id': `https://msakithub.com/blog/${post.slug}` },
+            'isPartOf': { '@id': 'https://msakithub.com/#website' },
+            'breadcrumb': {
+              '@type': 'BreadcrumbList',
+              'itemListElement': [
+                { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://msakithub.com/' },
+                { '@type': 'ListItem', 'position': 2, 'name': 'Blog', 'item': 'https://msakithub.com/blog' },
+                { '@type': 'ListItem', 'position': 3, 'name': post.title, 'item': `https://msakithub.com/blog/${post.slug}` },
+              ],
+            },
           },
         }
       : { title: 'Blog', path: '/blog' }

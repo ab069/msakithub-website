@@ -3,14 +3,22 @@ import { useEffect, useRef } from 'react';
 export default function ScrollProgress() {
   const ref = useRef(null);
   useEffect(() => {
-    const onScroll = () => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
       const h = document.documentElement;
       const p = h.scrollTop / (h.scrollHeight - h.clientHeight || 1);
       if (ref.current) ref.current.style.transform = `scaleX(${p})`;
     };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
     window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
+    update();
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   return (

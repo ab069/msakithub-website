@@ -23,8 +23,57 @@ const values = [
 export default function About() {
   useSeo({
     title: 'About',
-    description: 'About MSAK IT Hub — our mission, values, and how we deliver reliable software and digital solutions for growing businesses.',
+    description: 'About MSAK IT Hub — our mission, values, and how we deliver reliable software and digital solutions for growing businesses in Pakistan.',
     path: '/about',
+    jsonLd: [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        'url': 'https://msakithub.com/about',
+        'name': 'About MSAK IT Hub',
+        'description': "Mission, vision and values of MSAK IT Hub — Pakistan's trusted IT and software partner.",
+        'isPartOf': { '@id': 'https://msakithub.com/#website' },
+        'about': { '@id': 'https://msakithub.com/#organization' },
+        'breadcrumb': {
+          '@type': 'BreadcrumbList',
+          'itemListElement': [
+            { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://msakithub.com/' },
+            { '@type': 'ListItem', 'position': 2, 'name': 'About', 'item': 'https://msakithub.com/about' },
+          ],
+        },
+      },
+      {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        'mainEntity': [
+          {
+            '@type': 'Question',
+            'name': 'What is MSAK IT Hub?',
+            'acceptedAnswer': { '@type': 'Answer', 'text': 'MSAK IT Hub is a professional software house registered in Pakistan, specializing in custom software development, web and mobile apps, digital marketing and IT consulting.' },
+          },
+          {
+            '@type': 'Question',
+            'name': 'What is the mission of MSAK IT Hub?',
+            'acceptedAnswer': { '@type': 'Answer', 'text': 'To empower businesses through reliable software and digital solutions that support growth, innovation and long-term success.' },
+          },
+          {
+            '@type': 'Question',
+            'name': 'What values does MSAK IT Hub follow?',
+            'acceptedAnswer': { '@type': 'Answer', 'text': 'MSAK IT Hub is guided by five core values: Transparency, Professionalism, Accountability, Continuous Improvement and Client Confidentiality.' },
+          },
+          {
+            '@type': 'Question',
+            'name': 'How does MSAK IT Hub handle client confidentiality?',
+            'acceptedAnswer': { '@type': 'Answer', 'text': 'Client data, code and business information are treated as strictly confidential and protected under clear agreements.' },
+          },
+          {
+            '@type': 'Question',
+            'name': 'Where is MSAK IT Hub located?',
+            'acceptedAnswer': { '@type': 'Answer', 'text': 'MSAK IT Hub is a software house registered and operating in Pakistan, serving clients locally and internationally.' },
+          },
+        ],
+      },
+    ],
   });
   const root = useRef(null);
   const missionRef = useRef(null);

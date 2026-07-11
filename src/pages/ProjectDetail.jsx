@@ -26,6 +26,25 @@ export default function ProjectDetail() {
           title: project.name,
           description: project.desc,
           path: `/projects/${project.slug}`,
+          jsonLd: {
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareApplication',
+            'name': project.name,
+            'description': project.desc,
+            'applicationCategory': 'WebApplication',
+            'operatingSystem': 'Web',
+            'author': { '@id': 'https://msakithub.com/#organization' },
+            'url': project.live || `https://msakithub.com/projects/${project.slug}`,
+            'keywords': (project.tags || []).join(', '),
+            'breadcrumb': {
+              '@type': 'BreadcrumbList',
+              'itemListElement': [
+                { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://msakithub.com/' },
+                { '@type': 'ListItem', 'position': 2, 'name': 'Work', 'item': 'https://msakithub.com/projects' },
+                { '@type': 'ListItem', 'position': 3, 'name': project.name, 'item': `https://msakithub.com/projects/${project.slug}` },
+              ],
+            },
+          },
         }
       : { title: 'Projects', path: '/projects' }
   );

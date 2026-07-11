@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="v-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0E1020"/>
+      <stop offset="100%" stop-color="#1D1735"/>
+    </linearGradient>
+    <linearGradient id="v-screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7C5CFF" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#A78BFA" stop-opacity="0.05"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#v-bg)"/>
+  <g opacity="0.12" stroke="#A78BFA" stroke-width="1">
+    <path d="M0 400 L800 400" />
+    <path d="M0 420 L800 420" />
+  </g>
+  <g transform="translate(200,90)">
+    <rect x="0" y="0" width="280" height="200" rx="10" fill="#1A1830" stroke="#7C5CFF" stroke-width="2"/>
+    <rect x="15" y="15" width="250" height="170" rx="4" fill="url(#v-screen)"/>
+    <text x="30" y="45" font-family="monospace" font-size="11" fill="#A78BFA">VAPEHUB • POS</text>
+    <line x1="30" y1="58" x2="250" y2="58" stroke="#7C5CFF" stroke-width="1" opacity="0.4"/>
+    <text x="30" y="85" font-family="monospace" font-size="12" fill="#fff" opacity="0.85">Vape Coil × 2</text>
+    <text x="250" y="85" text-anchor="end" font-family="monospace" font-size="12" fill="#fff">$18.00</text>
+    <text x="30" y="108" font-family="monospace" font-size="12" fill="#fff" opacity="0.85">Pod Kit</text>
+    <text x="250" y="108" text-anchor="end" font-family="monospace" font-size="12" fill="#fff">$34.00</text>
+    <text x="30" y="131" font-family="monospace" font-size="12" fill="#fff" opacity="0.85">E-Liquid 60ml</text>
+    <text x="250" y="131" text-anchor="end" font-family="monospace" font-size="12" fill="#fff">$22.50</text>
+    <line x1="30" y1="145" x2="250" y2="145" stroke="#7C5CFF" stroke-width="1" opacity="0.4"/>
+    <text x="30" y="170" font-family="monospace" font-size="14" fill="#A78BFA" font-weight="700">TOTAL</text>
+    <text x="250" y="170" text-anchor="end" font-family="monospace" font-size="14" fill="#7C5CFF" font-weight="700">$74.50</text>
+    <rect x="80" y="215" width="120" height="10" rx="2" fill="#7C5CFF" opacity="0.5"/>
+  </g>
+  <g transform="translate(520,120)">
+    <rect x="0" y="0" width="140" height="180" rx="6" fill="#1A1830" stroke="#A78BFA" stroke-width="1.5"/>
+    <text x="70" y="30" text-anchor="middle" font-family="monospace" font-size="10" fill="#A78BFA">— RECEIPT —</text>
+    <line x1="15" y1="42" x2="125" y2="42" stroke="#fff" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.3"/>
+    <text x="15" y="60" font-family="monospace" font-size="9" fill="#fff" opacity="0.7">Item .......... 18.00</text>
+    <text x="15" y="76" font-family="monospace" font-size="9" fill="#fff" opacity="0.7">Item .......... 34.00</text>
+    <text x="15" y="92" font-family="monospace" font-size="9" fill="#fff" opacity="0.7">Item .......... 22.50</text>
+    <line x1="15" y1="104" x2="125" y2="104" stroke="#fff" stroke-width="0.5" stroke-dasharray="2,2" opacity="0.3"/>
+    <text x="15" y="122" font-family="monospace" font-size="10" fill="#7C5CFF" font-weight="700">TOTAL 74.50</text>
+    <text x="15" y="140" font-family="monospace" font-size="9" fill="#fff" opacity="0.5">CARD  ✓ APPROVED</text>
+    <g transform="translate(15,155)">
+      <rect x="0" y="0" width="4" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="6" y="0" width="2" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="11" y="0" width="5" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="19" y="0" width="3" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="25" y="0" width="6" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="34" y="0" width="2" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="39" y="0" width="4" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="46" y="0" width="3" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="52" y="0" width="5" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="60" y="0" width="2" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="65" y="0" width="4" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="72" y="0" width="6" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="81" y="0" width="2" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="86" y="0" width="3" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="92" y="0" width="5" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="100" y="0" width="2" height="18" fill="#fff" opacity="0.85"/>
+      <rect x="105" y="0" width="4" height="18" fill="#fff" opacity="0.85"/>
+    </g>
+  </g>
+  <text x="80" y="440" font-family="monospace" font-size="11" fill="#A78BFA" opacity="0.6">λ  serverless / edge</text>
+  <text x="720" y="440" text-anchor="end" font-family="monospace" font-size="11" fill="#7C5CFF" opacity="0.6">retail • pos</text>
+</svg>

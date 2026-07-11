@@ -32,10 +32,6 @@ html, body {
 
 ::selection { background: var(--accent); color: #fff; }
 
-@media (hover: hover) and (pointer: fine) {
-  * { cursor: none !important; }
-}
-
 ::-webkit-scrollbar { width: 0; height: 0; }
 
 :focus-visible {
@@ -161,8 +157,7 @@ html, body {
 .btn-ghost {
   color: var(--cream);
   border: 1px solid var(--line);
-  background: rgba(18,19,26,0.4);
-  backdrop-filter: blur(8px);
+  background: rgba(18,19,26,0.6);
 }
 .btn-ghost::before {
   content: '';
@@ -203,8 +198,7 @@ html, body {
 
 /* ----- GLASS CARD + CURSOR SPOTLIGHT ----- */
 .glass {
-  background: rgba(18,19,26,0.55);
-  backdrop-filter: blur(14px);
+  background: rgba(18,19,26,0.85);
   border: 1px solid var(--line);
   border-radius: 14px;
 }
@@ -226,8 +220,7 @@ html, body {
 .flood {
   position: relative;
   isolation: isolate;
-  background: rgba(18,19,26,0.55);
-  backdrop-filter: blur(10px);
+  background: rgba(18,19,26,0.85);
   border: 1px solid var(--line);
   border-radius: 14px;
   overflow: hidden;
@@ -323,8 +316,16 @@ html, body {
   border-radius: 1px;
 }
 
-/* big editorial divider marquee (JS velocity-skew track) */
-.marquee { display: flex; width: max-content; align-items: center; will-change: transform; }
+/* big editorial divider marquee — pure CSS scroll (no rAF) */
+.marquee {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: marquee-left 42s linear infinite;
+}
+.marquee.reverse { animation: marquee-right 48s linear infinite; }
+@keyframes marquee-left  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes marquee-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 .marquee-item {
   font-family: 'Fraunces', serif;
   font-weight: 450;
@@ -338,27 +339,6 @@ html, body {
 .marquee-item.stroke { color: transparent; -webkit-text-stroke: 1px rgba(245,246,250,0.3); }
 .marquee-item.accent { font-style: italic; color: var(--accent2); }
 .marquee-star { color: var(--accent); font-size: 0.4em; }
-
-/* ----- CURSOR ----- */
-.cursor-dot {
-  position: fixed; top: 0; left: 0;
-  width: 6px; height: 6px; border-radius: 50%;
-  background: var(--accent2);
-  pointer-events: none; z-index: 10000;
-  transform: translate(-50%, -50%);
-}
-.cursor-ring {
-  position: fixed; top: 0; left: 0;
-  width: 36px; height: 36px; border-radius: 50%;
-  border: 1px solid rgba(245,246,250,0.35);
-  pointer-events: none; z-index: 9999;
-  transform: translate(-50%, -50%);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent2);
-  transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, border-color 0.3s ease;
-}
-.cursor-ring.is-hover { width: 48px; height: 48px; background: rgba(124,92,255,0.12); border-color: var(--accent); }
 
 /* ----- PRELOADER (terminal boot, violet) ----- */
 .boot-screen {
@@ -418,17 +398,18 @@ html, body {
 }
 
 /* ----- PARALLAX GRADIENT ORBS ----- */
+/* Soft edges baked into the gradient — no runtime blur filter (GPU-cheap). */
 .orb {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.35;
+  opacity: 0.5;
   pointer-events: none;
   will-change: transform;
+  transform: translateZ(0);
 }
-.orb.a { background: radial-gradient(circle, rgba(124,92,255,0.55), transparent 70%); }
-.orb.b { background: radial-gradient(circle, rgba(167,139,250,0.4), transparent 70%); }
-.orb.c { background: radial-gradient(circle, rgba(91,63,212,0.45), transparent 70%); }
+.orb.a { background: radial-gradient(circle, rgba(124,92,255,0.30) 0%, rgba(124,92,255,0.12) 35%, transparent 68%); }
+.orb.b { background: radial-gradient(circle, rgba(167,139,250,0.22) 0%, rgba(167,139,250,0.09) 35%, transparent 68%); }
+.orb.c { background: radial-gradient(circle, rgba(91,63,212,0.25) 0%, rgba(91,63,212,0.10) 35%, transparent 68%); }
 
 /* ----- INPUT bottom hairline + focus sweep ----- */
 .field { position: relative; }
@@ -512,9 +493,6 @@ html, body {
   text-align: left;
   cursor: pointer;
 }
-@media (hover: hover) and (pointer: fine) {
-  .idx-trigger { cursor: none !important; }
-}
 
 .idx-title {
   transition: transform 0.45s cubic-bezier(0.65,0,0.35,1), color 0.3s ease;
@@ -574,12 +552,8 @@ html, body {
   background-size: 72px 72px;
 }
 
-.noise::after {
-  content: '';
-  position: fixed; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  pointer-events: none; z-index: 9000; opacity: 0.03;
-}
+/* Noise overlay removed — repainted fullscreen SVG on every scroll frame,
+   causing measurable jank on lower-end devices. */
 
 .text-stroke {
   color: transparent;
@@ -623,6 +597,11 @@ html, body {
   .hl-word { opacity: 1 !important; }
   .clip-reveal { clip-path: none !important; }
   .orb { display: none !important; }
+}
+
+/* On phones the orbs pile up over content and cost paint — hide the extras. */
+@media (max-width: 640px) {
+  .orb.c { display: none; }
 }
 
 /* ----- BLOG POST SIDEBAR + EDITORIAL ----- */
@@ -680,9 +659,6 @@ html, body {
   border-color: var(--accent);
   background: rgba(124,92,255,0.18);
   transform: translateY(-2px);
-}
-@media (hover: hover) and (pointer: fine) {
-  .share-btn { cursor: none !important; }
 }
 
 .post-pullquote {
@@ -760,9 +736,6 @@ html, body {
   border: 0;
   cursor: pointer;
   transition: color 0.35s ease;
-}
-@media (hover: hover) and (pointer: fine) {
-  .filter-btn { cursor: none !important; }
 }
 
 /* ----- BLOG ROW ACCENT BAR ----- */
@@ -894,9 +867,6 @@ html, body {
   cursor: pointer;
   transition: transform 0.45s cubic-bezier(0.65,0,0.35,1), border-color 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
   overflow: hidden;
-}
-@media (hover: hover) and (pointer: fine) {
-  .cat-tile { cursor: none !important; }
 }
 .cat-tile::after {
   content: '';
@@ -1112,15 +1082,6 @@ html, body {
   .msak-chat-dock { right: 16px; bottom: 16px; }
 }
 
-/* Keep the system cursor usable over the widget even though the site hides it. */
-@media (hover: hover) and (pointer: fine) {
-  .msak-chat-launcher, .msak-chat-pill, .msak-chat-head-close,
-  .msak-chat-suggest button, .msak-chat-composer input,
-  .msak-chat-composer button, .msak-chat-foot a,
-  .msak-chat-cta, .msak-chat-reopen, .msak-chat-restart { cursor: pointer !important; }
-  .msak-chat-composer input { cursor: text !important; }
-}
-
 /* ── drafting label + done actions ── */
 .msak-typing-label {
   display: flex; align-items: center; gap: 8px;
@@ -1327,13 +1288,6 @@ select.msak-inp { appearance: none; cursor: pointer; }
 .msak-btn.primary:hover { transform: translateY(-1px); box-shadow: 0 8px 28px rgba(124,92,255,0.6); }
 .msak-btn.ghost { color: var(--cream); background: var(--bg); border-color: var(--line); }
 .msak-btn.ghost:hover { border-color: var(--accent); }
-
-@media (hover: hover) and (pointer: fine) {
-  .msak-step, .msak-icon-btn, .msak-select-chip, .msak-radio-card, .msak-tag-x,
-  .msak-edit-pencil, .msak-btn, .msak-chat-reopen, .msak-chat-restart,
-  .msak-modal-overlay, select.msak-inp { cursor: pointer !important; }
-  .msak-inp, .msak-tag-input, .msak-area { cursor: text !important; }
-}
 
 @media (max-width: 720px) {
   .msak-wiz { flex-direction: column; height: calc(100vh - 32px); }

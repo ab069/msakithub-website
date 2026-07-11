@@ -29,7 +29,7 @@ export default function Orbs() {
         gsap.to(orb, {
           yPercent: (i + 1) * -18,
           ease: 'none',
-          scrollTrigger: { trigger: document.body, start: 'top top', end: 'max', scrub: 1.2 },
+          scrollTrigger: { trigger: document.body, start: 'top top', end: 'max', scrub: true },
         });
       });
     }, root);

@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="w-bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0E1220"/>
+      <stop offset="100%" stop-color="#1A1830"/>
+    </linearGradient>
+    <linearGradient id="w-accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7C5CFF"/>
+      <stop offset="100%" stop-color="#A78BFA"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#w-bg)"/>
+  <g opacity="0.15" stroke="#7C5CFF" stroke-width="1">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="0" y1="400" x2="800" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="500"/>
+    <line x1="400" y1="0" x2="400" y2="500"/>
+    <line x1="600" y1="0" x2="600" y2="500"/>
+  </g>
+  <g transform="translate(250,120)">
+    <rect x="0" y="0" width="300" height="70" rx="6" fill="#1E1B3A" stroke="#7C5CFF" stroke-width="1.5"/>
+    <circle cx="20" cy="35" r="5" fill="#A78BFA"/>
+    <circle cx="40" cy="35" r="5" fill="#7C5CFF" opacity="0.6"/>
+    <rect x="70" y="27" width="200" height="4" rx="2" fill="#fff" opacity="0.3"/>
+    <rect x="70" y="38" width="140" height="4" rx="2" fill="#fff" opacity="0.15"/>
+    <rect x="0" y="90" width="300" height="70" rx="6" fill="#1E1B3A" stroke="#A78BFA" stroke-width="1.5"/>
+    <circle cx="20" cy="125" r="5" fill="#7C5CFF"/>
+    <circle cx="40" cy="125" r="5" fill="#A78BFA" opacity="0.6"/>
+    <rect x="70" y="117" width="200" height="4" rx="2" fill="#fff" opacity="0.3"/>
+    <rect x="70" y="128" width="160" height="4" rx="2" fill="#fff" opacity="0.15"/>
+    <rect x="0" y="180" width="300" height="70" rx="6" fill="#1E1B3A" stroke="#7C5CFF" stroke-width="1.5"/>
+    <circle cx="20" cy="215" r="5" fill="#A78BFA"/>
+    <circle cx="40" cy="215" r="5" fill="#7C5CFF" opacity="0.6"/>
+    <rect x="70" y="207" width="200" height="4" rx="2" fill="#fff" opacity="0.3"/>
+    <rect x="70" y="218" width="180" height="4" rx="2" fill="#fff" opacity="0.15"/>
+  </g>
+  <g transform="translate(50,410)" fill="none" stroke="url(#w-accent)" stroke-width="1.5">
+    <path d="M0 30 Q 100 -10, 200 30 T 400 30 T 600 30 T 700 30"/>
+  </g>
+  <text x="50" y="60" font-family="monospace" font-size="14" fill="#7C5CFF" opacity="0.5">// server-01</text>
+  <text x="600" y="470" font-family="monospace" font-size="14" fill="#A78BFA" opacity="0.5">99.9% uptime</text>
+</svg>

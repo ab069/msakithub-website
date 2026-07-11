@@ -1,9 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import emailjs from '@emailjs/browser';
 import TextReveal from '../components/TextReveal.jsx';
 import Scramble from '../components/Scramble.jsx';
 import useSeo from '../hooks/useSeo.js';
+
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,14 +29,56 @@ const info = [
 export default function Contact() {
   useSeo({
     title: 'Contact',
-    description: 'Get in touch with MSAK IT Hub. Pakistan-based IT and software services — Mon–Fri 9 AM–6 PM PKT. info@msakithub.com.',
+    description: 'Get in touch with MSAK IT Hub. Pakistan-based IT and software services — Mon–Fri 9 AM–6 PM PKT. Email: info@msakithub.com. Start your project today.',
     path: '/contact',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'ContactPage',
+      'url': 'https://msakithub.com/contact',
+      'name': 'Contact MSAK IT Hub',
+      'description': 'Contact MSAK IT Hub for custom software, web development, mobile apps and IT consultancy services in Pakistan.',
+      'isPartOf': { '@id': 'https://msakithub.com/#website' },
+      'breadcrumb': {
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://msakithub.com/' },
+          { '@type': 'ListItem', 'position': 2, 'name': 'Contact', 'item': 'https://msakithub.com/contact' },
+        ],
+      },
+      'mainEntity': {
+        '@type': 'Organization',
+        '@id': 'https://msakithub.com/#organization',
+        'name': 'MSAK IT Hub',
+        'email': 'info@msakithub.com',
+        'url': 'https://msakithub.com',
+        'address': { '@type': 'PostalAddress', 'addressCountry': 'PK' },
+        'openingHoursSpecification': {
+          '@type': 'OpeningHoursSpecification',
+          'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          'opens': '09:00',
+          'closes': '18:00',
+        },
+        'contactPoint': {
+          '@type': 'ContactPoint',
+          'contactType': 'customer service',
+          'email': 'info@msakithub.com',
+          'availableLanguage': ['English', 'Urdu'],
+          'hoursAvailable': {
+            '@type': 'OpeningHoursSpecification',
+            'dayOfWeek': ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            'opens': '09:00',
+            'closes': '18:00',
+          },
+        },
+      },
+    },
   });
   const root = useRef(null);
   const checkRef = useRef(null);
   const boxRef = useRef(null);
-  const [form, setForm] = useState({ name: '', email: '', company: '', subject: '', message: '' });
-  const [state, setState] = useState('idle'); // idle | sending | sent
+  const [form, setForm] = useState({ name: '', email: '', company: '', subject: '', message: '', website: '' });
+  const [state, setState] = useState('idle'); // idle | sending | sent | error
+  const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -58,11 +105,39 @@ export default function Contact() {
   }, [state]);
 
   const change = (e) => setForm((p) => ({ ...p, [e.target.id]: e.target.value }));
-  const submit = (e) => {
+
+  const submit = async (e) => {
     e.preventDefault();
+    if (form.website) { setState('sent'); return; }
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      setErrorMsg('Email service is not configured. Please email info@msakithub.com directly.');
+      setState('error');
+      return;
+    }
+    setErrorMsg('');
     setState('sending');
-    setTimeout(() => setState('sent'), 450);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: form.name.trim(),
+          reply_to: form.email.trim(),
+          company: form.company.trim() || '—',
+          subject: form.subject.trim(),
+          message: form.message.trim(),
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      );
+      setForm({ name: '', email: '', company: '', subject: '', message: '', website: '' });
+      setState('sent');
+    } catch (err) {
+      setErrorMsg(err?.text || 'Something went wrong. Please try again or email us directly.');
+      setState('error');
+    }
   };
+
+  const retry = () => { setErrorMsg(''); setState('idle'); };
 
   return (
     <div ref={root}>
@@ -119,6 +194,24 @@ export default function Contact() {
                 <span className="sweep" />
                 <label htmlFor="message">Message <span className="text-accent">*</span></label>
               </div>
+              <input
+                id="website"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                value={form.website}
+                onChange={change}
+                style={{ position: 'absolute', left: '-10000px', width: 1, height: 1, opacity: 0 }}
+                aria-hidden="true"
+              />
+              {state === 'error' && (
+                <div className="border border-accent/50 bg-accent/5 p-4 flex items-start justify-between gap-4">
+                  <p className="text-sm text-white/85">{errorMsg}</p>
+                  <button type="button" onClick={retry} className="mono text-[11px] uppercase tracking-widest text-accent hover:underline shrink-0">
+                    Try again
+                  </button>
+                </div>
+              )}
               <button type="submit" disabled={state === 'sending'} className="btn btn-fill btn-sweep w-full justify-center" data-cursor="send">
                 <span>{state === 'sending' ? 'Transmitting…' : 'Send Message'}</span>
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M8 2l5 5-5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>

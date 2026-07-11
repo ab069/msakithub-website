@@ -21,8 +21,34 @@ const services = [
 export default function Services() {
   useSeo({
     title: 'Services',
-    description: 'Custom software, web and mobile app development, UI/UX design, digital marketing and IT consultancy services from MSAK IT Hub.',
+    description: 'Custom software development, web and mobile app development, UI/UX design, digital marketing and IT consultancy — comprehensive IT services from MSAK IT Hub, Pakistan.',
     path: '/services',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      'url': 'https://msakithub.com/services',
+      'name': 'IT & Software Services — MSAK IT Hub',
+      'description': 'Comprehensive IT and digital services: custom software, web development, mobile apps, UI/UX design, digital marketing and IT consultancy.',
+      'provider': { '@id': 'https://msakithub.com/#organization' },
+      'breadcrumb': {
+        '@type': 'BreadcrumbList',
+        'itemListElement': [
+          { '@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': 'https://msakithub.com/' },
+          { '@type': 'ListItem', 'position': 2, 'name': 'Services', 'item': 'https://msakithub.com/services' },
+        ],
+      },
+      'mainEntity': {
+        '@type': 'ItemList',
+        'itemListElement': [
+          { '@type': 'ListItem', 'position': 1, 'item': { '@type': 'Service', 'name': 'Custom Software Development', 'description': 'Custom software tailored to your business processes. Secure, scalable and easy to maintain.', 'provider': { '@id': 'https://msakithub.com/#organization' } } },
+          { '@type': 'ListItem', 'position': 2, 'item': { '@type': 'Service', 'name': 'Web Development', 'description': 'Professional, responsive and performance-optimized websites that represent your brand.', 'provider': { '@id': 'https://msakithub.com/#organization' } } },
+          { '@type': 'ListItem', 'position': 3, 'item': { '@type': 'Service', 'name': 'Mobile App Development', 'description': 'Mobile applications for Android and iOS focused on usability, performance and reliability.', 'provider': { '@id': 'https://msakithub.com/#organization' } } },
+          { '@type': 'ListItem', 'position': 4, 'item': { '@type': 'Service', 'name': 'Digital Marketing', 'description': 'Marketing services that increase visibility, attract customers and generate measurable growth.', 'provider': { '@id': 'https://msakithub.com/#organization' } } },
+          { '@type': 'ListItem', 'position': 5, 'item': { '@type': 'Service', 'name': 'UI/UX Design', 'description': 'Intuitive, visually appealing interfaces focused on usability, accessibility and consistency.', 'provider': { '@id': 'https://msakithub.com/#organization' } } },
+          { '@type': 'ListItem', 'position': 6, 'item': { '@type': 'Service', 'name': 'IT Consultancy', 'description': 'Strategic IT consulting focused on efficiency, scalability and cost optimization.', 'provider': { '@id': 'https://msakithub.com/#organization' } } },
+        ],
+      },
+    },
   });
   const root = useRef(null);
 
