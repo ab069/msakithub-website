@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
+import { Analytics } from '@vercel/analytics/react';
+
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import ScrollProgress from './components/ScrollProgress.jsx';
@@ -65,6 +67,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <Analytics />
       <div className="noise">
         <ScrollProgress />
         <ScrollManager />
