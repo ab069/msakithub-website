@@ -11,6 +11,7 @@ const links = [
   { label: 'Work', href: '/projects' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
+  { label: 'Privacy', href: '/privacy' },
 ];
 
 export default function Navbar() {
@@ -65,7 +66,7 @@ export default function Navbar() {
               <Logo size={48} className="shrink-0 transition-transform duration-300 group-hover:scale-[1.04]" />
             </Link>
 
-            <nav className="hidden md:flex items-center gap-9">
+            <nav className="hidden lg:flex items-center gap-7 xl:gap-9">
               {links.map((l) => (
                 <Link
                   key={l.href}
@@ -79,14 +80,14 @@ export default function Navbar() {
               ))}
             </nav>
 
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <MagneticButton to="/contact" className="btn btn-fill" data-cursor="go">
                 <span>Get Started</span>
               </MagneticButton>
             </div>
 
             <button
-              className="md:hidden flex flex-col gap-[5px] p-2 z-[9100]"
+              className="lg:hidden flex flex-col gap-[5px] p-2 z-[9100]"
               onClick={() => setOpen(!open)}
               aria-label="Menu"
             >
