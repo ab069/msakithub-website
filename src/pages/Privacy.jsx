@@ -19,69 +19,95 @@ const sections = [
   },
   {
     n: '02',
+    h: 'Data Collected via Meta Platforms',
+    p: [
+      'When you use our application and authenticate via Facebook Login, we may collect the following information from your Meta account: your public profile (name, email address, profile picture), friend list (if permitted), and any additional information you choose to share.',
+      'If our application integrates with the Instagram Graph API, we may access Instagram business account data including profile information, media (photos, videos, stories), comments, insights and follower counts, strictly for the purposes described in this policy.',
+      'When using the Pages API, we may access Page information, Page posts, insights and messaging capabilities associated with Pages you manage.',
+      'If our application utilizes the Messenger Platform, we may collect and process messages, conversation context and user-provided information through Messenger interactions.',
+    ],
+  },
+  {
+    n: '03',
     h: 'How We Use Your Information',
     p: [
       'To respond to your inquiries, deliver requested services, and provide project updates.',
       'To improve our website, services and client communication.',
       'To send occasional service-related updates when you have opted in.',
+      'To authenticate users and provide personalized experiences through Meta platform integrations.',
+      'To manage and respond to communications sent via Facebook Messenger.',
+      'To display and manage Instagram and Facebook Page content within our application.',
       'To comply with legal obligations under the laws of the Islamic Republic of Pakistan.',
     ],
   },
   {
-    n: '03',
-    h: 'Client Confidentiality',
-    p: [
-      'Client data, source code, designs and business information shared with MSAK IT Hub are treated as strictly confidential and are protected under written agreements.',
-      'We do not sell, rent or share your personal information with third parties for marketing purposes.',
-    ],
-  },
-  {
     n: '04',
-    h: 'Cookies & Analytics',
+    h: 'Data Sharing & Third Parties',
     p: [
-      'We use cookies and similar technologies to keep the site functional and to understand aggregate usage patterns. You can disable cookies through your browser settings; some site features may be affected.',
+      'We do not sell, rent or trade your personal information. We may share data only in the following circumstances: with Meta Platforms as required by their terms of service and API policies; with trusted service providers who assist in operating our application and who are bound by confidentiality obligations; when required by law or to protect our legal rights.',
+      'Data processed through Meta APIs is subject to Meta\'s own Data Policy. We encourage users to review Meta\'s privacy practices at https://www.facebook.com/privacy/policy/.',
     ],
   },
   {
     n: '05',
-    h: 'Third-Party Services',
+    h: 'Client Confidentiality',
     p: [
-      'We rely on trusted third-party providers for email delivery, analytics and hosting. These providers process data on our behalf under their own privacy commitments and only for the purpose of operating our services.',
+      'Client data, source code, designs and business information shared with MSAK IT Hub are treated as strictly confidential and are protected under written agreements.',
     ],
   },
   {
     n: '06',
-    h: 'Data Retention',
+    h: 'Cookies & Analytics',
     p: [
-      'We retain personal information only as long as necessary to fulfil the purpose it was collected for, resolve disputes, and meet legal or contractual obligations.',
+      'We use cookies and similar technologies to keep the site functional and to understand aggregate usage patterns. You can disable cookies through your browser settings; some site features may be affected.',
+      'Meta platforms may also use cookies and similar technologies in accordance with their own policies when you interact with our application through Facebook or Instagram.',
     ],
   },
   {
     n: '07',
-    h: 'Your Rights',
+    h: 'Data Retention',
     p: [
-      'You may request access to, correction of, or deletion of the personal information we hold about you by contacting us at info@msakithub.com. We will respond within a reasonable timeframe.',
+      'We retain personal information only as long as necessary to fulfil the purpose it was collected for, resolve disputes, and meet legal or contractual obligations.',
+      'Data obtained through Meta APIs is retained only for as long as necessary to provide the requested service. You may request deletion of your data at any time by contacting us.',
     ],
   },
   {
     n: '08',
-    h: 'Security',
+    h: 'Your Rights',
     p: [
-      'We apply reasonable technical and organizational safeguards to protect the information we hold. However, no method of electronic transmission or storage is completely secure.',
+      'You have the right to access, correct, or delete the personal information we hold about you. This includes data obtained through Meta platform integrations.',
+      'You may revoke our application\'s access to your Meta data at any time through your Facebook or Instagram settings.',
+      'To exercise your rights or request data deletion, contact us at info@msakithub.com. We will respond within a reasonable timeframe.',
     ],
   },
   {
     n: '09',
+    h: 'Data Security',
+    p: [
+      'We apply reasonable technical and organizational safeguards to protect the information we hold, including encryption in transit and at rest. However, no method of electronic transmission or storage is completely secure.',
+      'We do not store Meta account credentials. Authentication is handled entirely through Meta\'s OAuth flow.',
+    ],
+  },
+  {
+    n: '10',
+    h: 'Children\'s Privacy',
+    p: [
+      'Our application is not directed to individuals under the age of 13 (or the applicable age in your jurisdiction). We do not knowingly collect personal information from children through Meta platforms or otherwise.',
+    ],
+  },
+  {
+    n: '11',
     h: 'Changes to This Policy',
     p: [
       'We may update this Privacy Policy from time to time. Material changes will be reflected on this page with an updated effective date.',
     ],
   },
   {
-    n: '10',
+    n: '12',
     h: 'Contact Us',
     p: [
       'If you have any questions about this Privacy Policy or how your information is handled, contact us at info@msakithub.com.',
+      'For Meta-specific data inquiries, you may also reach us through the contact information provided on our website.',
     ],
   },
 ];
@@ -89,14 +115,14 @@ const sections = [
 export default function Privacy() {
   useSeo({
     title: 'Privacy Policy',
-    description: 'Privacy Policy for MSAK IT Hub — how we collect, use and protect the information of clients and website visitors.',
+    description: 'Privacy Policy for MSAK IT Hub — how we collect, use and protect the information of clients, website visitors and Meta platform users.',
     path: '/privacy',
     jsonLd: {
       '@context': 'https://schema.org',
       '@type': 'WebPage',
       'url': 'https://msakithub.com/privacy',
       'name': 'Privacy Policy — MSAK IT Hub',
-      'description': 'How MSAK IT Hub collects, uses and safeguards personal and client information.',
+      'description': 'How MSAK IT Hub collects, uses and safeguards personal, client and Meta platform data.',
       'isPartOf': { '@id': 'https://msakithub.com/#website' },
       'breadcrumb': {
         '@type': 'BreadcrumbList',
@@ -132,10 +158,10 @@ export default function Privacy() {
         </div>
         <TextReveal text="Privacy Policy" as="h1" className="font-display t-hero text-white" />
         <p className="mt-10 text-muted text-sm md:text-base leading-relaxed max-w-2xl" data-reveal>
-          This policy explains how MSAK IT Hub collects, uses and safeguards information provided by clients and website visitors.
+          This policy explains how MSAK IT Hub collects, uses and safeguards information provided by clients, website visitors and users of our Meta platform integrations (Facebook, Instagram, Messenger).
         </p>
         <p className="mt-4 mono text-[11px] tracking-[0.14em] text-muted uppercase" data-reveal>
-          Effective date · January 2026
+          Effective date · July 2026
         </p>
       </section>
 
