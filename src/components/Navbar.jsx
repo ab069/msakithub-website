@@ -11,7 +11,6 @@ const links = [
   { label: 'Work', href: '/projects' },
   { label: 'Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
-  { label: 'Privacy', href: '/privacy' },
 ];
 
 export default function Navbar() {
