@@ -40,6 +40,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://msakithub.com/privacy</loc>
+    <lastmod>2026-07-11</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
     <loc>https://msakithub.com/blog/future-of-web-development-2025</loc>
     <lastmod>2025-01-25</lastmod>
     <changefreq>monthly</changefreq>

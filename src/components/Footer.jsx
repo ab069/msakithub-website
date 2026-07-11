@@ -98,6 +98,9 @@ export default function Footer() {
       {/* Bottom row — status heartbeat */}
       <div className="relative max-w-site mx-auto px-5 md:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-3 border-t border-line">
         <p className="mono text-[11px] tracking-[0.14em] text-muted uppercase">© 2026 MSAK IT Hub. All rights reserved.</p>
+        <Link to="/privacy" className="mono text-[11px] tracking-[0.14em] text-muted uppercase hover:text-white transition-colors link-line">
+          Privacy Policy
+        </Link>
         <div className="flex items-center gap-2.5">
           <span className="w-1.5 h-1.5 rounded-full bg-[#3ddc6f] pulse-dot" />
           <span className="mono text-[10px] uppercase tracking-[0.18em] text-muted">

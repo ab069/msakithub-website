@@ -21,6 +21,7 @@ const ProjectDetail = lazy(() => import('./pages/ProjectDetail.jsx'));
 const Blog          = lazy(() => import('./pages/Blog.jsx'));
 const BlogPost      = lazy(() => import('./pages/BlogPost.jsx'));
 const Contact       = lazy(() => import('./pages/Contact.jsx'));
+const Privacy       = lazy(() => import('./pages/Privacy.jsx'));
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -98,6 +99,7 @@ function AnimatedRoutes() {
       <Route path="/blog" element={<Blog />} />
       <Route path="/blog/:slug" element={<BlogPost />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/privacy" element={<Privacy />} />
     </Routes>
   );
 }
