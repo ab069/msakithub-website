@@ -1,11 +1,14 @@
 // MSAK IT Hub — shared AI logic (hardened against prompt injection).
-const useOpenRouter = () => Boolean(process.env.OPENROUTER_API_KEY)
+const hasGemini = () => Boolean(process.env.GEMINI_API_KEY)
+const hasOpenRouter = () => Boolean(process.env.OPENROUTER_API_KEY)
 
-export const MODEL = process.env.OPENROUTER_API_KEY
-  ? process.env.OPENROUTER_MODEL || 'google/gemini-2.5-flash'
-  : process.env.GEMINI_MODEL || 'gemini-2.0-flash'
+const GEMINI_MODEL = () => process.env.GEMINI_MODEL || 'gemini-2.5-flash'
+const OPENROUTER_MODEL = () => process.env.OPENROUTER_MODEL || 'google/gemini-2.5-flash'
 
-export const hasApiKey = () => Boolean(process.env.OPENROUTER_API_KEY || process.env.GEMINI_API_KEY)
+// Kept for logging / external imports.
+export const MODEL = hasGemini() ? GEMINI_MODEL() : OPENROUTER_MODEL()
+
+export const hasApiKey = () => hasGemini() || hasOpenRouter()
 
 export class AIError extends Error {
   constructor(status, message, detail) {
@@ -152,11 +155,11 @@ const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
 
 async function callGemini({ systemText, contents, schema, temperature = 0.7 }) {
   const API_KEY = process.env.GEMINI_API_KEY
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL()}:generateContent`
   const body = JSON.stringify({
     systemInstruction: { parts: [{ text: systemText }] },
     contents,
-    generationConfig: { temperature, responseMimeType: 'application/json', responseSchema: schema, maxOutputTokens: 2048 },
+    generationConfig: { temperature, responseMimeType: 'application/json', responseSchema: schema, maxOutputTokens: 8192, thinkingConfig: { thinkingBudget: 0 } },
     safetySettings: [
       { category: 'HARM_CATEGORY_HARASSMENT',        threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
       { category: 'HARM_CATEGORY_HATE_SPEECH',       threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
@@ -193,7 +196,7 @@ async function callOpenRouter({ systemText, contents, temperature = 0.7 }) {
     r = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${API_KEY}`, 'X-Title': 'MSAK IT Hub Assistant' },
-      body: JSON.stringify({ model: MODEL, messages, temperature, max_tokens: 2048, response_format: { type: 'json_object' } }),
+      body: JSON.stringify({ model: OPENROUTER_MODEL(), messages, temperature, max_tokens: 8192, response_format: { type: 'json_object' } }),
     })
   } catch (err) { throw new AIError(500, 'Request to model failed.', String(err)) }
   if (!r.ok) { const detail = await r.text(); throw new AIError(r.status, `Model error (${r.status})`, detail) }
@@ -205,9 +208,17 @@ async function callOpenRouter({ systemText, contents, temperature = 0.7 }) {
   return parsed
 }
 
-function callModel(args) {
+async function callModel(args) {
   if (!hasApiKey()) throw new AIError(500, 'AI service not configured on the server.')
-  return useOpenRouter() ? callOpenRouter(args) : callGemini(args)
+  // Prefer Gemini (free tier). Fall back to OpenRouter if it fails and a key is set.
+  const providers = []
+  if (hasGemini()) providers.push(callGemini)
+  if (hasOpenRouter()) providers.push(callOpenRouter)
+  let lastErr
+  for (const fn of providers) {
+    try { return await fn(args) } catch (err) { lastErr = err }
+  }
+  throw lastErr
 }
 
 export async function chatReply(rawMessages) {
