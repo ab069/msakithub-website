@@ -133,12 +133,14 @@ export default function ProjectDetail() {
       {/* Hero Image */}
       <section className="border-b border-line" data-reveal>
         {project.image ? (
-          <div className="relative overflow-hidden bg-card" style={{ maxHeight: '600px' }}>
+          <div className="relative overflow-hidden bg-card">
             <img
               src={project.image}
               alt={`${project.name} screenshot`}
-              className="w-full h-full object-cover object-top"
-              style={{ maxHeight: '600px' }}
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+              className="w-full h-auto block"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-bg/60 to-transparent pointer-events-none" />
           </div>
@@ -205,30 +207,61 @@ export default function ProjectDetail() {
       {project.gallery && project.gallery.length > 0 && (
         <section className="border-b border-line">
           <div className="max-w-site mx-auto px-5 md:px-10 py-20 md:py-28">
-            <div className="flex items-center gap-3 mb-12" data-reveal>
-              <span className="w-8 h-px bg-accent" />
-              <span className="eyebrow">Product Screenshots</span>
+            <div className="flex items-end justify-between gap-6 mb-12" data-reveal>
+              <div className="flex items-center gap-3">
+                <span className="w-8 h-px bg-accent" />
+                <span className="eyebrow">Product Screenshots</span>
+              </div>
+              <span className="mono text-[10px] uppercase tracking-widest text-muted">
+                {String(project.gallery.length).padStart(2, '0')} screens
+              </span>
             </div>
 
-            <div className="space-y-6">
-              {project.gallery.map((src, i) => (
-                <div
-                  key={i}
-                  className="relative overflow-hidden border border-line bg-card group"
-                  data-reveal
-                >
-                  <img
-                    src={src}
-                    alt={`${project.name} screenshot ${i + 1}`}
-                    className="w-full h-auto object-cover object-top group-hover:scale-[1.01] transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-bg/40 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <span className="absolute bottom-4 right-4 mono text-[10px] text-white/30">
-                    {String(i + 1).padStart(2, '0')} / {String(project.gallery.length).padStart(2, '0')}
-                  </span>
-                </div>
-              ))}
+            {/* First screenshot: full-width hero-style */}
+            <div
+              className="relative overflow-hidden border border-line bg-card group mb-6"
+              data-reveal
+            >
+              <img
+                src={project.gallery[0]}
+                alt={`${project.name} screenshot 1`}
+                className="w-full h-auto object-cover object-top group-hover:scale-[1.01] transition-transform duration-700"
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-bg/40 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <span className="absolute top-4 left-4 mono text-[10px] tracking-widest text-white bg-bg/70 backdrop-blur-sm px-2 py-1 rounded">
+                01 / {String(project.gallery.length).padStart(2, '0')}
+              </span>
             </div>
+
+            {/* Remaining screenshots in a 2-col masonry-ish grid */}
+            {project.gallery.length > 1 && (
+              <div className="grid md:grid-cols-2 gap-6">
+                {project.gallery.slice(1).map((src, i) => {
+                  const idx = i + 2;
+                  return (
+                    <div
+                      key={i}
+                      className="relative overflow-hidden border border-line bg-card group"
+                      data-reveal
+                    >
+                      <img
+                        src={src}
+                        alt={`${project.name} screenshot ${idx}`}
+                        className="w-full h-auto object-cover object-top group-hover:scale-[1.02] transition-transform duration-700"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-bg/40 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <span className="absolute top-4 left-4 mono text-[10px] tracking-widest text-white bg-bg/70 backdrop-blur-sm px-2 py-1 rounded">
+                        {String(idx).padStart(2, '0')} / {String(project.gallery.length).padStart(2, '0')}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </section>
       )}

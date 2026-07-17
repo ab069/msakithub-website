@@ -11,16 +11,64 @@ const SUGGESTIONS = [
   'What services do you offer?',
 ];
 
-// One conversational turn → { reply, readyToDraft }.
-async function sendChat(messages) {
+// Fire-and-forget prewarm so the serverless function is initialized before
+// the visitor's first message. Ignored on failure.
+let warmedAt = 0
+function prewarmApis() {
+  const now = Date.now()
+  if (now - warmedAt < 4 * 60 * 1000) return // Vercel functions stay warm ~5 min
+  warmedAt = now
+  try {
+    fetch('/api/chat?warmup=1', { method: 'GET', keepalive: true }).catch(() => {})
+    fetch('/api/draft?warmup=1', { method: 'GET', keepalive: true }).catch(() => {})
+  } catch {}
+}
+
+// One conversational turn. Streams the reply via NDJSON and calls
+// `onDelta(text)` with each chunk as it arrives. Resolves to
+// { reply, readyToDraft } once the stream ends.
+async function sendChat(messages, onDelta) {
   const res = await fetch('/api/chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ messages }),
   });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data?.error || `Request failed (${res.status})`);
-  return data;
+  if (!res.ok || !res.body) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data?.error || `Request failed (${res.status})`);
+  }
+
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buf = '';
+  let reply = '';
+  let readyToDraft = false;
+  let streamError = null;
+
+  while (true) {
+    const { value, done } = await reader.read();
+    if (done) break;
+    buf += decoder.decode(value, { stream: true });
+    let nl;
+    while ((nl = buf.indexOf('\n')) !== -1) {
+      const line = buf.slice(0, nl).trim();
+      buf = buf.slice(nl + 1);
+      if (!line) continue;
+      let evt;
+      try { evt = JSON.parse(line); } catch { continue; }
+      if (evt.chunk) {
+        reply += evt.chunk;
+        onDelta?.(evt.chunk);
+      } else if (evt.done) {
+        readyToDraft = Boolean(evt.readyToDraft);
+      } else if (evt.error) {
+        streamError = evt.error;
+      }
+    }
+  }
+
+  if (streamError) throw new Error(streamError);
+  return { reply: reply.trim(), readyToDraft };
 }
 
 // Turns the whole conversation into a structured project brief.
@@ -66,8 +114,25 @@ export default function ChatWidget() {
   }, [messages, status, open]);
 
   useEffect(() => {
-    if (open) setTimeout(() => inputRef.current?.focus(), 250);
+    if (open) {
+      prewarmApis();
+      setTimeout(() => inputRef.current?.focus(), 250);
+    }
   }, [open]);
+
+  // Also prewarm as soon as the user hovers or focuses the launcher button —
+  // by the time the panel opens, the function is often already ready.
+  useEffect(() => {
+    const launcher = document.querySelector('.msak-chat-launcher, .msak-chat-pill');
+    if (!launcher) return;
+    const warm = () => prewarmApis();
+    launcher.addEventListener('pointerenter', warm, { once: false, passive: true });
+    launcher.addEventListener('focus', warm, { once: false });
+    return () => {
+      launcher.removeEventListener('pointerenter', warm);
+      launcher.removeEventListener('focus', warm);
+    };
+  }, []);
 
   async function buildBrief(convo) {
     if (status === 'drafting') return;
@@ -99,9 +164,35 @@ export default function ChatWidget() {
     setInput('');
     setStatus('thinking');
 
+    // Placeholder bot bubble that grows as tokens stream in.
+    let botStarted = false;
+    let streamed = '';
+    const startBotBubble = () => {
+      botStarted = true;
+      setStatus('chatting');
+      setMessages((m) => [...m, { role: 'bot', text: '' }]);
+    };
+    const appendToBot = (delta) => {
+      streamed += delta;
+      setMessages((m) => {
+        const copy = m.slice();
+        const last = copy[copy.length - 1];
+        if (last && last.role === 'bot') copy[copy.length - 1] = { role: 'bot', text: streamed };
+        return copy;
+      });
+    };
+
     try {
-      const { reply, readyToDraft } = await sendChat(convo);
-      const withReply = [...convo, { role: 'bot', text: reply }];
+      const { reply, readyToDraft } = await sendChat(convo, (delta) => {
+        if (!botStarted) startBotBubble();
+        appendToBot(delta);
+      });
+      // Safety net: if we somehow got no visible reply, show a warm default
+      // so the visitor never sees an empty bubble.
+      const finalReply = (streamed || reply || '').trim() ||
+        "Hey! 👋 Tell me a bit about what you'd like to build — a website, an app, or something custom?";
+      if (!botStarted) startBotBubble();
+      const withReply = [...convo, { role: 'bot', text: finalReply }];
       setMessages(withReply);
       if (readyToDraft) {
         await buildBrief(withReply);

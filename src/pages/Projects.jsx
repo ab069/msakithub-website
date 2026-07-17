@@ -40,6 +40,9 @@ export default function Projects() {
   }, []);
 
   const shown = filter === 'All' ? projects : projects.filter((p) => p.tags.includes(filter));
+  const featured = shown.filter((p) => Array.isArray(p.gallery) && p.gallery.length > 0);
+  const rest = shown.filter((p) => !Array.isArray(p.gallery) || p.gallery.length === 0);
+  const totalShots = projects.reduce((n, p) => n + (Array.isArray(p.gallery) ? p.gallery.length : 0), 0);
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -63,17 +66,27 @@ export default function Projects() {
         <div className="flex items-center gap-3 mb-8" data-reveal>
           <span className="w-8 h-px bg-accent" /><span className="eyebrow">Selected Work</span>
         </div>
-        <TextReveal text="Projects & case studies" as="h1" className="font-display t-hero text-white" />
-        <div className="mt-10" data-reveal>
-          <p className="text-muted text-sm md:text-base leading-relaxed max-w-xl">
-            A selection of {projects.length} builds — from full-stack platforms and serverless POS systems to portfolios and experiments.
+        <TextReveal text="Project gallery & case studies" as="h1" className="font-display t-hero text-white" />
+        <div className="mt-10 grid md:grid-cols-3 gap-8 md:gap-16" data-reveal>
+          <p className="text-muted text-sm md:text-base leading-relaxed md:col-span-2 max-w-2xl">
+            A curated look at {projects.length} builds — full-stack platforms, serverless POS systems, marketplaces and portfolios. Click any card for a walkthrough, screenshots and the tech behind it.
           </p>
+          <div className="flex md:justify-end gap-8 md:gap-10">
+            <div>
+              <div className="font-display text-4xl md:text-5xl text-white leading-none">{projects.length}</div>
+              <div className="mono text-[10px] uppercase tracking-widest text-muted mt-2">Projects</div>
+            </div>
+            <div>
+              <div className="font-display text-4xl md:text-5xl text-white leading-none">{totalShots}</div>
+              <div className="mono text-[10px] uppercase tracking-widest text-muted mt-2">Screens</div>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Marquee */}
       <div className="py-8 border-b border-line">
-        <Marquee items={['Full Stack', 'TypeScript', 'MERN', 'Serverless', 'PostgreSQL']} variant="stroke" />
+        <Marquee items={['Full Stack', 'TypeScript', 'MERN', 'Serverless', 'PostgreSQL', 'Marketplace', 'POS']} variant="stroke" />
       </div>
 
       {/* Filters */}
@@ -93,15 +106,52 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* Grid */}
-      <section className="max-w-site mx-auto px-5 md:px-10 py-16 md:py-24">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {shown.map((p, i) => (
-            <ProjectCard key={p.repo} project={p} index={i} />
-          ))}
-        </div>
-        {shown.length === 0 && <p className="text-muted text-sm text-center py-20">No projects with this tag.</p>}
-      </section>
+      {/* Featured — case studies with real screenshots */}
+      {featured.length > 0 && (
+        <section className="max-w-site mx-auto px-5 md:px-10 pt-16 md:pt-24 pb-8 md:pb-12">
+          <div className="flex items-end justify-between gap-6 mb-10 md:mb-14" data-reveal>
+            <div className="flex items-center gap-3">
+              <span className="w-8 h-px bg-accent" />
+              <span className="eyebrow">Case Studies</span>
+            </div>
+            <span className="mono text-[10px] uppercase tracking-widest text-muted">
+              {featured.length} live product{featured.length === 1 ? '' : 's'}
+            </span>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8">
+            {featured.map((p, i) => (
+              <ProjectCard key={p.repo} project={p} index={i} featured />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Other projects */}
+      {rest.length > 0 && (
+        <section className="max-w-site mx-auto px-5 md:px-10 pt-8 pb-16 md:pb-24">
+          {featured.length > 0 && (
+            <div className="flex items-end justify-between gap-6 mb-10 md:mb-14 pt-8 md:pt-12 border-t border-line" data-reveal>
+              <div className="flex items-center gap-3 pt-8 md:pt-12">
+                <span className="w-8 h-px bg-accent" />
+                <span className="eyebrow">More Work</span>
+              </div>
+              <span className="mono text-[10px] uppercase tracking-widest text-muted pt-8 md:pt-12">
+                {rest.length} project{rest.length === 1 ? '' : 's'}
+              </span>
+            </div>
+          )}
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {rest.map((p, i) => (
+              <ProjectCard key={p.repo} project={p} index={featured.length + i} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {shown.length === 0 && (
+        <p className="text-muted text-sm text-center py-20">No projects with this tag.</p>
+      )}
     </div>
   );
 }

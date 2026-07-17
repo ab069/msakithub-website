@@ -11,9 +11,10 @@ function initials(name) {
   return (words[0][0] + words[1][0]).toUpperCase();
 }
 
-export default function ProjectCard({ project, index }) {
-  const { name, year, desc, tags, image, slug } = project;
+export default function ProjectCard({ project, index, featured = false }) {
+  const { name, year, desc, tags, image, slug, gallery, tagline } = project;
   const tileRef = useRef(null);
+  const shotCount = Array.isArray(gallery) ? gallery.length : 0;
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -31,18 +32,25 @@ export default function ProjectCard({ project, index }) {
     };
   }, [index]);
 
+  const mediaClass = featured
+    ? 'aspect-[16/10]'
+    : 'aspect-[16/10]';
+
   const inner = (
     <>
       {/* Screenshot / placeholder visual */}
       <div
         ref={tileRef}
-        className="clip-reveal relative h-44 md:h-52 bg-card border-b border-line overflow-hidden grid place-items-center"
+        className={`clip-reveal relative ${mediaClass} bg-card border-b border-line overflow-hidden grid place-items-center`}
       >
         {image ? (
           <img
             src={image}
             alt={name}
-            className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+            loading={index < 2 ? 'eager' : 'lazy'}
+            decoding="async"
+            fetchpriority={index === 0 ? 'high' : 'auto'}
+            className="absolute inset-0 w-full h-full object-contain object-top p-2 group-hover:scale-[1.02] transition-transform duration-700"
           />
         ) : (
           <>
@@ -52,16 +60,34 @@ export default function ProjectCard({ project, index }) {
             </span>
           </>
         )}
+
         {/* top meta */}
         <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-          <span className="mono text-[10px] tracking-widest text-muted">{String(index + 1).padStart(2, '0')}</span>
-          <span className="mono text-[10px] tracking-widest text-muted">{year}</span>
+          <span className="mono text-[10px] tracking-widest text-muted bg-bg/60 backdrop-blur-sm px-2 py-1 rounded">
+            {String(index + 1).padStart(2, '0')}
+          </span>
+          <div className="flex items-center gap-2">
+            {shotCount > 0 && (
+              <span className="mono text-[10px] tracking-widest text-white bg-accent/90 text-bg px-2 py-1 rounded flex items-center gap-1">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21 15 16 10 5 21" />
+                </svg>
+                {shotCount}
+              </span>
+            )}
+            <span className="mono text-[10px] tracking-widest text-muted bg-bg/60 backdrop-blur-sm px-2 py-1 rounded">
+              {year}
+            </span>
+          </div>
         </div>
+
         {/* View indicator on hover */}
         {slug && (
-          <div className="absolute inset-0 grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <span className="bg-accent/90 text-bg mono text-[10px] uppercase tracking-widest px-4 py-2 rounded-full backdrop-blur-sm">
-              View Project →
+          <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-bg/90 to-transparent">
+            <span className="inline-flex bg-accent/90 text-bg mono text-[10px] uppercase tracking-widest px-4 py-2 rounded-full backdrop-blur-sm">
+              View Case Study →
             </span>
           </div>
         )}
@@ -69,9 +95,16 @@ export default function ProjectCard({ project, index }) {
 
       {/* Body */}
       <div className="p-6 md:p-7 flex flex-col flex-1">
-        <h3 className="font-display text-2xl md:text-[1.7rem] leading-tight text-white group-hover:text-accent transition-colors">
-          {name}
-        </h3>
+        <div className="flex items-baseline justify-between gap-4">
+          <h3 className={`font-display leading-tight text-white group-hover:text-accent transition-colors ${featured ? 'text-3xl md:text-4xl' : 'text-2xl md:text-[1.7rem]'}`}>
+            {name}
+          </h3>
+        </div>
+
+        {featured && tagline ? (
+          <p className="text-accent/90 text-sm md:text-base leading-relaxed mt-3 font-display">{tagline}</p>
+        ) : null}
+
         <p className="text-muted text-sm leading-relaxed mt-3 flex-1">{desc}</p>
 
         {/* tags */}
