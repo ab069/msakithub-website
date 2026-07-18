@@ -108,4 +108,40 @@ export const posts = [
       'None of this is mandatory. Plenty of production apps run perfectly well on older patterns. But for new builds, adopting the modern defaults from day one saves a refactor you would otherwise be doing in eighteen months.',
     ],
   },
+  {
+    slug: 'practical-ai-integration-small-business',
+    title: 'Practical AI Integration for Small Business Software',
+    excerpt:
+      'Where AI actually earns its keep inside internal tools — and the shortcuts that quietly cost more than they save.',
+    category: 'Development',
+    date: 'MAR 05 2025',
+    read: '8 MIN',
+    featured: false,
+    author: 'MSAK IT Hub Team',
+    body: [
+      'AI features get pitched to small businesses as a competitive edge, but most of the pitches skip the boring middle. The real question is not whether to add AI, it is which parts of your software will actually be better because of it — and which parts are just chasing a demo.',
+      'The clearest wins tend to be internal, not customer-facing. Summarizing long support threads, drafting first-pass responses, extracting structured data from messy PDFs, categorizing incoming tickets — these are unglamorous jobs that a language model can shorten by ninety percent while a human still owns the final answer.',
+      'Customer-facing AI is a harder call. A chatbot on your homepage feels modern, but if it cannot reliably answer your top ten questions or hand off cleanly to a human, it will erode trust faster than it saves labor. Ship the internal use cases first, learn where the model is confident, and only then expose it to customers.',
+      'Cost discipline is the part every team underestimates. Token usage compounds quietly, and a feature that costs two cents per call becomes a real line item at ten thousand calls a day. Cache aggressively, batch requests where the workflow allows, and keep an eye on which prompts are actually pulling their weight.',
+      'Finally, treat the model as a component, not a strategy. The teams getting durable value from AI in 2025 are the ones who wrote clean interfaces around it, so they can swap providers, tune prompts, and add guardrails without rewriting the product. Everything else is a demo waiting to age badly.',
+    ],
+  },
+  {
+    slug: 'cybersecurity-fundamentals-growing-teams',
+    title: 'Cybersecurity Fundamentals Every Growing Team Overlooks',
+    excerpt:
+      'The unglamorous security basics that quietly prevent the incidents no one wants to explain to their customers.',
+    category: 'Technology',
+    date: 'MAR 15 2025',
+    read: '9 MIN',
+    featured: false,
+    author: 'MSAK IT Hub Team',
+    body: [
+      'Most security incidents at small and mid-sized companies do not come from sophisticated attackers. They come from ordinary gaps — a reused password, a forgotten S3 bucket, a departed contractor whose access nobody revoked. The fundamentals are boring, which is exactly why they get skipped.',
+      'Identity is the single highest-leverage place to invest. Single sign-on, hardware-backed second factors and a real offboarding checklist eliminate a huge percentage of the ways attackers actually get in. If a team can only fix one thing this quarter, this is the one.',
+      'Secrets management is the second silent risk. Credentials pasted into Slack, hard-coded into repositories or shared over email tend to outlive their usefulness by years. A dedicated secrets manager, short-lived tokens and automatic rotation are cheap to adopt and remove an entire class of incidents.',
+      'Backups are only real if they have been restored. Plenty of teams have nightly backups they have never once tested; when ransomware hits, they discover the backups are corrupt or incomplete. Schedule a quarterly restore drill on a real environment and treat a failed drill as a production-grade incident, because that is what it will become when it matters.',
+      'Finally, patch faster than you think you need to. Most exploited vulnerabilities have patches available well before they are widely abused, but the median time-to-patch in small teams is measured in weeks. Automating dependency updates and treating security patches as non-negotiable — not something to defer to next sprint — removes the largest predictable source of risk on the board.',
+    ],
+  },
 ];
