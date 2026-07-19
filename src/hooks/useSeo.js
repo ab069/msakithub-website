@@ -4,17 +4,23 @@ const BASE = 'https://msakithub.com';
 const DEFAULT_IMG = `${BASE}/brand/banner.png`;
 const SITE_NAME = 'MSAK IT Hub';
 const DEFAULT_TITLE = `${SITE_NAME} — Pakistan's Trusted IT & Software Partner`;
+const TWITTER_SITE = '@msakithub';
 
-function setMeta(selector, attr, value) {
-  if (!value) return;
+function upsertMeta(selectorParts, value, remove = false) {
+  const [attrName, attrValue] = selectorParts;
+  const selector = `meta[${attrName}="${attrValue}"]`;
   let el = document.head.querySelector(selector);
+  if (remove) {
+    if (el) el.parentNode.removeChild(el);
+    return;
+  }
+  if (value == null || value === '') return;
   if (!el) {
     el = document.createElement('meta');
-    const [prop, key] = selector.replace(/[\[\]"']/g, '').split('=');
-    el.setAttribute(prop, key);
+    el.setAttribute(attrName, attrValue);
     document.head.appendChild(el);
   }
-  el.setAttribute(attr, value);
+  el.setAttribute('content', value);
 }
 
 function setLink(rel, href) {
@@ -44,6 +50,13 @@ function removeLd(els) {
   els.forEach((el) => el.parentNode && el.parentNode.removeChild(el));
 }
 
+const ARTICLE_META = [
+  ['property', 'article:published_time'],
+  ['property', 'article:modified_time'],
+  ['property', 'article:author'],
+  ['property', 'article:section'],
+];
+
 export default function useSeo({
   title,
   description,
@@ -52,6 +65,9 @@ export default function useSeo({
   imageAlt,
   type = 'website',
   jsonLd,
+  article,
+  twitterCreator,
+  noindex = false,
 } = {}) {
   useEffect(() => {
     const fullTitle = title ? `${title} — ${SITE_NAME}` : DEFAULT_TITLE;
@@ -59,22 +75,46 @@ export default function useSeo({
     const imgAlt = imageAlt || fullTitle;
 
     document.title = fullTitle;
-    setMeta('meta[name="description"]', 'content', description);
+    upsertMeta(['name', 'description'], description);
+    upsertMeta(['name', 'robots'], noindex ? 'noindex,nofollow' : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1');
     setLink('canonical', url);
 
-    setMeta('meta[property="og:title"]', 'content', fullTitle);
-    setMeta('meta[property="og:description"]', 'content', description);
-    setMeta('meta[property="og:url"]', 'content', url);
-    setMeta('meta[property="og:image"]', 'content', image);
-    setMeta('meta[property="og:image:alt"]', 'content', imgAlt);
-    setMeta('meta[property="og:type"]', 'content', type);
+    upsertMeta(['property', 'og:title'], fullTitle);
+    upsertMeta(['property', 'og:description'], description);
+    upsertMeta(['property', 'og:url'], url);
+    upsertMeta(['property', 'og:image'], image);
+    upsertMeta(['property', 'og:image:alt'], imgAlt);
+    upsertMeta(['property', 'og:type'], type);
+    upsertMeta(['property', 'og:site_name'], SITE_NAME);
+    upsertMeta(['property', 'og:locale'], 'en_US');
 
-    setMeta('meta[name="twitter:title"]', 'content', fullTitle);
-    setMeta('meta[name="twitter:description"]', 'content', description);
-    setMeta('meta[name="twitter:image"]', 'content', image);
-    setMeta('meta[name="twitter:image:alt"]', 'content', imgAlt);
+    upsertMeta(['name', 'twitter:card'], 'summary_large_image');
+    upsertMeta(['name', 'twitter:site'], TWITTER_SITE);
+    upsertMeta(['name', 'twitter:title'], fullTitle);
+    upsertMeta(['name', 'twitter:description'], description);
+    upsertMeta(['name', 'twitter:image'], image);
+    upsertMeta(['name', 'twitter:image:alt'], imgAlt);
+    upsertMeta(['name', 'twitter:creator'], twitterCreator || TWITTER_SITE);
+
+    if (type === 'article' && article) {
+      upsertMeta(['property', 'article:published_time'], article.publishedTime);
+      upsertMeta(['property', 'article:modified_time'], article.modifiedTime || article.publishedTime);
+      upsertMeta(['property', 'article:author'], article.author);
+      upsertMeta(['property', 'article:section'], article.section);
+      const tags = Array.isArray(article.tags) ? article.tags : [];
+      document.head.querySelectorAll('meta[property="article:tag"]').forEach((n) => n.parentNode.removeChild(n));
+      tags.forEach((tag) => {
+        const el = document.createElement('meta');
+        el.setAttribute('property', 'article:tag');
+        el.setAttribute('content', tag);
+        document.head.appendChild(el);
+      });
+    } else {
+      ARTICLE_META.forEach((sel) => upsertMeta(sel, null, true));
+      document.head.querySelectorAll('meta[property="article:tag"]').forEach((n) => n.parentNode.removeChild(n));
+    }
 
     const injected = jsonLd ? injectLd(jsonLd) : [];
     return () => removeLd(injected);
-  }, [title, description, path, image, imageAlt, type, jsonLd]);
+  }, [title, description, path, image, imageAlt, type, jsonLd, article, twitterCreator, noindex]);
 }
