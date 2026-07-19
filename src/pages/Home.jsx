@@ -324,7 +324,7 @@ export default function Home() {
                 <li key={b} className="check-item flex items-center gap-5 text-sm md:text-base text-white/80 border-b border-line pb-7 last:border-0 last:pb-0">
                   <span className="w-7 h-7 border border-line grid place-items-center shrink-0">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                      <path className="check-path" d="M2.5 7.5l3 3 6-7" stroke="#A78BFA" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                      <path className="check-path" d="M2.5 7.5l3 3 6-7" stroke="#FF6B4A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
                     </svg>
                   </span>
                   <span className="mono text-[10px] text-muted shrink-0">{String(i + 1).padStart(2, '0')}</span>

@@ -29,7 +29,7 @@ export default function HeroCanvas() {
     renderer.setSize(mount.clientWidth, mount.clientHeight);
     mount.appendChild(renderer.domElement);
 
-    const ACCENT = 0x7c5cff;
+    const ACCENT = 0xf1433a;
 
     const group = new THREE.Group();
     const coreGeo = new THREE.IcosahedronGeometry(isMobile ? 1.5 : 2.1, 1);
@@ -98,7 +98,7 @@ export default function HeroCanvas() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(110% 75% at 72% 32%, rgba(124,92,255,0.09), transparent 52%), linear-gradient(to bottom, rgba(11,12,16,0.25), rgba(11,12,16,0.88))',
+            'radial-gradient(110% 75% at 72% 32%, rgba(241,67,58,0.09), transparent 52%), linear-gradient(to bottom, rgba(11,12,16,0.25), rgba(11,12,16,0.88))',
         }}
       />
     </div>
