@@ -40,7 +40,7 @@ export default function Logo({ size = 48, iconOnly = false, className = '' }) {
           position: 'absolute',
           inset: '-40% -12% -40% -12%',
           background:
-            'radial-gradient(ellipse at 20% 50%, rgba(241,67,58,0.45), rgba(255,107,74,0.15) 40%, transparent 65%)',
+            'radial-gradient(ellipse at 20% 50%, rgba(230,57,70,0.45), rgba(255,92,110,0.15) 40%, transparent 65%)',
           filter: 'blur(14px)',
           pointerEvents: 'none',
           zIndex: 0,
@@ -57,7 +57,7 @@ export default function Logo({ size = 48, iconOnly = false, className = '' }) {
           height: h * 1.4,
           transform: 'translate(-50%, -50%)',
           background:
-            'radial-gradient(circle, rgba(241,67,58,0.34), rgba(255,107,74,0.20) 45%, transparent 70%)',
+            'radial-gradient(circle, rgba(230,57,70,0.34), rgba(255,92,110,0.20) 45%, transparent 70%)',
           filter: 'blur(10px)',
           pointerEvents: 'none',
           zIndex: 0,
@@ -76,7 +76,7 @@ export default function Logo({ size = 48, iconOnly = false, className = '' }) {
           pointerEvents: 'none',
           userSelect: 'none',
           filter:
-            'drop-shadow(0 2px 6px rgba(241,67,58,0.35)) drop-shadow(0 6px 22px rgba(193,18,31,0.30))',
+            'drop-shadow(0 2px 6px rgba(230,57,70,0.35)) drop-shadow(0 6px 22px rgba(162,13,27,0.30))',
           zIndex: 1,
           ...shift,
         }}

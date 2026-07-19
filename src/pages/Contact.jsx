@@ -172,7 +172,7 @@ export default function Contact() {
             <div className="text-center py-16">
               <div ref={boxRef} className="w-16 h-16 border border-accent grid place-items-center mx-auto mb-8">
                 <svg width="26" height="26" viewBox="0 0 22 22" fill="none">
-                  <path ref={checkRef} d="M4 11l5 5 9-9" stroke="#FF6B4A" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                  <path ref={checkRef} d="M4 11l5 5 9-9" stroke="#FF5C6E" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
                 </svg>
               </div>
               <h3 className="font-display t-h3 text-white mb-3">Message Sent</h3>

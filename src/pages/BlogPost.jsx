@@ -171,21 +171,21 @@ export default function BlogPost() {
                 <svg viewBox="0 0 200 200" width="100%" height="auto">
                   <defs>
                     <linearGradient id="pg" x1="0" x2="1" y1="0" y2="1">
-                      <stop offset="0%" stopColor="#F1433A" stopOpacity="0.95"/>
-                      <stop offset="100%" stopColor="#FF6B4A" stopOpacity="0.35"/>
+                      <stop offset="0%" stopColor="#E63946" stopOpacity="0.95"/>
+                      <stop offset="100%" stopColor="#FF5C6E" stopOpacity="0.35"/>
                     </linearGradient>
                     <radialGradient id="pgCore" cx="50%" cy="50%" r="50%">
-                      <stop offset="0%" stopColor="#FF6B4A" stopOpacity="0.55"/>
-                      <stop offset="100%" stopColor="#F1433A" stopOpacity="0"/>
+                      <stop offset="0%" stopColor="#FF5C6E" stopOpacity="0.55"/>
+                      <stop offset="100%" stopColor="#E63946" stopOpacity="0"/>
                     </radialGradient>
                     <path id="pgTextPath" d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0" />
                   </defs>
                   <g className="glyph-spin-cw">
                     <circle cx="100" cy="100" r="92" fill="none" stroke="url(#pg)" strokeWidth="0.6" strokeDasharray="2 6"/>
-                    <circle cx="100" cy="8"   r="1.6" fill="#FF6B4A"/>
-                    <circle cx="192" cy="100" r="1.6" fill="#FF6B4A"/>
-                    <circle cx="100" cy="192" r="1.6" fill="#FF6B4A"/>
-                    <circle cx="8"   cy="100" r="1.6" fill="#FF6B4A"/>
+                    <circle cx="100" cy="8"   r="1.6" fill="#FF5C6E"/>
+                    <circle cx="192" cy="100" r="1.6" fill="#FF5C6E"/>
+                    <circle cx="100" cy="192" r="1.6" fill="#FF5C6E"/>
+                    <circle cx="8"   cy="100" r="1.6" fill="#FF5C6E"/>
                   </g>
                   <g className="glyph-spin-ccw">
                     <text fontFamily="JetBrains Mono, monospace" fontSize="9" letterSpacing="5" fill="#8B8D98">
@@ -196,7 +196,7 @@ export default function BlogPost() {
                   </g>
                   <circle className="glyph-ring" cx="100" cy="100" r="58" fill="none" stroke="url(#pg)" strokeWidth="1.2"/>
                   <circle cx="100" cy="100" r="30" fill="url(#pgCore)"/>
-                  <circle className="glyph-dot" cx="100" cy="100" r="6" fill="#FF6B4A"/>
+                  <circle className="glyph-dot" cx="100" cy="100" r="6" fill="#FF5C6E"/>
                 </svg>
               </div>
             </div>

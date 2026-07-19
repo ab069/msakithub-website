@@ -41,7 +41,6 @@ export default function Projects() {
 
   const shown = filter === 'All' ? projects : projects.filter((p) => p.tags.includes(filter));
   const featured = shown.filter((p) => Array.isArray(p.gallery) && p.gallery.length > 0);
-  const rest = shown.filter((p) => !Array.isArray(p.gallery) || p.gallery.length === 0);
   const totalShots = projects.reduce((n, p) => n + (Array.isArray(p.gallery) ? p.gallery.length : 0), 0);
 
   useEffect(() => {
@@ -122,28 +121,6 @@ export default function Projects() {
           <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {featured.map((p, i) => (
               <ProjectCard key={p.repo} project={p} index={i} featured />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Other projects */}
-      {rest.length > 0 && (
-        <section className="max-w-site mx-auto px-5 md:px-10 pt-8 pb-16 md:pb-24">
-          {featured.length > 0 && (
-            <div className="flex items-end justify-between gap-6 mb-10 md:mb-14 pt-8 md:pt-12 border-t border-line" data-reveal>
-              <div className="flex items-center gap-3 pt-8 md:pt-12">
-                <span className="w-8 h-px bg-accent" />
-                <span className="eyebrow">More Work</span>
-              </div>
-              <span className="mono text-[10px] uppercase tracking-widest text-muted pt-8 md:pt-12">
-                {rest.length} project{rest.length === 1 ? '' : 's'}
-              </span>
-            </div>
-          )}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {rest.map((p, i) => (
-              <ProjectCard key={p.repo} project={p} index={featured.length + i} />
             ))}
           </div>
         </section>
