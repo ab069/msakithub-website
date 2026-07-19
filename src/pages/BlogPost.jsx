@@ -22,6 +22,18 @@ export default function BlogPost() {
   const post = posts.find((p) => p.slug === slug);
   const [copied, setCopied] = useState(false);
 
+  const publishedIso = (() => {
+    if (!post) return null;
+    const m = /^([A-Z]{3})\s+(\d{1,2})\s+(\d{4})$/.exec(post.date?.trim() || '');
+    if (!m) return null;
+    const [, mon, day, year] = m;
+    const idx = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'].indexOf(mon);
+    if (idx < 0) return null;
+    return `${year}-${String(idx + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+  })();
+
+  const wordCount = post ? post.body.join(' ').split(/\s+/).filter(Boolean).length : 0;
+
   useSeo(
     post
       ? {
@@ -29,18 +41,32 @@ export default function BlogPost() {
           description: post.excerpt,
           path: `/blog/${post.slug}`,
           type: 'article',
+          article: {
+            publishedTime: publishedIso,
+            author: post.author || 'MSAK IT Hub',
+            section: post.category,
+            tags: [post.category, 'MSAK IT Hub'],
+          },
           jsonLd: {
             '@context': 'https://schema.org',
             '@type': 'BlogPosting',
             '@id': `https://msakithub.com/blog/${post.slug}`,
             'headline': post.title,
             'description': post.excerpt,
+            'articleSection': post.category,
+            'wordCount': wordCount,
             'author': { '@type': 'Organization', '@id': 'https://msakithub.com/#organization', 'name': 'MSAK IT Hub' },
             'publisher': { '@id': 'https://msakithub.com/#organization' },
-            'datePublished': post.date,
+            'datePublished': publishedIso || post.date,
+            'dateModified': publishedIso || post.date,
+            'inLanguage': 'en',
             'image': 'https://msakithub.com/brand/banner.png',
             'mainEntityOfPage': { '@type': 'WebPage', '@id': `https://msakithub.com/blog/${post.slug}` },
             'isPartOf': { '@id': 'https://msakithub.com/#website' },
+            'speakable': {
+              '@type': 'SpeakableSpecification',
+              'cssSelector': ['h1', '.post-lede'],
+            },
             'breadcrumb': {
               '@type': 'BreadcrumbList',
               'itemListElement': [
