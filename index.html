@@ -38,11 +38,18 @@
     <meta name="twitter:image" content="https://msakithub.com/brand/banner.png" />
     <meta name="twitter:image:alt" content="MSAK IT Hub logo and banner" />
 
-    <!-- Fonts — trimmed axes: only the weights actually used ship, halving woff2 payload. -->
+    <!-- Fonts — trimmed axes: only the weights actually used ship, halving woff2 payload.
+         Preload the CSS so the browser can start the fetch alongside HTML parsing,
+         then swap to a real stylesheet on load. Falls back cleanly without JS. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://generativelanguage.googleapis.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,600&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+    </noscript>
 
     <!-- Organization (LocalBusiness + ProfessionalService) -->
     <script type="application/ld+json">

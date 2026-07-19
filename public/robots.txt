@@ -1,15 +1,13 @@
+# https://msakithub.com — robots policy
+# Allow crawling of the marketing site; keep internal API routes private.
+
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /*?*utm_
+Disallow: /*?*fbclid
+Disallow: /*?*gclid
 
-User-agent: Googlebot
-Allow: /
-Disallow: /api/
-Crawl-delay: 1
-
-User-agent: Bingbot
-Allow: /
-Disallow: /api/
-Crawl-delay: 1
-
+# Explicit host + sitemap so search engines pick the canonical origin.
+Host: https://msakithub.com
 Sitemap: https://msakithub.com/sitemap.xml
