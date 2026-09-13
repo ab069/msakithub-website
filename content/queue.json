@@ -1,20 +1,5 @@
 [
   {
-    "slug": "hidden-cost-of-well-just-use-no-code",
-    "title": "The Hidden Cost of 'We'll Just Use a No-Code Tool for Now'",
-    "excerpt": "\"For now\" is doing a lot of work in that sentence. What actually happens when a no-code stopgap becomes permanent infrastructure.",
-    "category": "Technology",
-    "read": "5 MIN",
-    "author": "MSAK IT Hub Team",
-    "body": [
-      "\"We'll just use a no-code tool for now, and build something proper once we've validated the idea\" is one of the most common decisions a growing business makes, and it's often the right one — until \"for now\" quietly becomes eighteen months and the no-code tool has become the system three departments depend on daily.",
-      "The hidden cost isn't the no-code platform's monthly fee. It's the compounding cost of every workaround built on top of it once its limitations start showing up under real usage — the manual export-and-reimport step someone does every Monday because the platform can't do the automation natively, the spreadsheet that's become a shadow database because a report the platform can't generate gets built by hand instead.",
-      "Those workarounds don't show up as a single, visible cost. They show up as an hour here, two hours there, spread across several people, which is exactly why they're so easy to under-notice and so expensive in aggregate — a business can be quietly spending the equivalent of a full salary on manual workarounds around a $200/month tool without anyone clearly seeing the total.",
-      "The other real cost is migration risk. The longer a no-code stopgap runs, the more business-critical data and process logic gets locked inside a platform that was never designed to be migrated out of cleanly. What would have been a straightforward rebuild in month three becomes a genuinely risky data-migration project in month eighteen, because nobody wants to be the one who breaks the thing the whole team now depends on.",
-      "The fix isn't \"never use no-code\" — it's setting an explicit review point when the stopgap gets adopted: a specific usage threshold, or a specific date, at which someone deliberately re-evaluates whether \"for now\" has quietly become \"permanently,\" before the workarounds and the migration risk have both grown too large to easily reverse."
-    ]
-  },
-  {
     "slug": "how-we-structure-a-fixed-price-contract",
     "title": "How We Structure a Fixed-Price Software Contract So Nobody Gets Burned",
     "excerpt": "Fixed-price contracts get a bad reputation because most of them are structured badly. Here's a structure that actually protects both sides.",
