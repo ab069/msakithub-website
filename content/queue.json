@@ -1,20 +1,5 @@
 [
   {
-    "slug": "real-cost-of-technical-debt",
-    "title": "The Real Cost of Technical Debt — And When Paying It Down Is Worth It",
-    "excerpt": "Technical debt isn't automatically bad. Here's how to tell the difference between debt that's fine to carry and debt that's quietly bankrupting your roadmap.",
-    "category": "Development",
-    "read": "6 MIN",
-    "author": "MSAK IT Hub Team",
-    "body": [
-      "Technical debt gets talked about like it's always a mistake, but the metaphor is more useful than that. Real debt, taken deliberately, can be the right call — shipping a simpler version of a feature to hit a launch date, then improving it once real usage tells you what actually matters, is often smarter than delaying launch for a version nobody has validated yet.",
-      "The debt that actually hurts is the kind taken on without anyone deciding to take it — a shortcut that happened because nobody had time to do it properly, with no plan to revisit it, compounding quietly until a routine feature request takes three times longer than it should because it now has to route around five other shortcuts first.",
-      "The tell that debt has become a real problem isn't a messy codebase in the abstract — plenty of ugly code causes no harm if nobody has to touch it. The tell is velocity: if the same-sized feature request took two days a year ago and takes eight days now, with no corresponding increase in what the feature actually does, that gap is technical debt showing up on the balance sheet as lost time.",
-      "Paying it down is worth it exactly when that velocity tax exceeds the cost of fixing it — which means the decision needs a number attached, not a feeling. Estimate how much slower the team has gotten on a comparable task, multiply by how many more of those tasks are coming, and compare that to the cost of a focused refactor. Sometimes the honest answer is that the debt is fine to carry because that part of the system won't be touched again.",
-      "The teams that manage this well don't have a separate \"pay down debt\" initiative that competes for budget once a quarter — they treat debt reduction as part of the cost of the next feature that touches that code, folded into the estimate rather than deferred indefinitely. That's the difference between debt staying a manageable, deliberate trade-off and debt becoming the reason a roadmap quietly stops shipping."
-    ]
-  },
-  {
     "slug": "native-vs-react-native-vs-pwa",
     "title": "Native App, React Native, or PWA in 2026 — How to Actually Choose",
     "excerpt": "The mobile stack decision gets made too early, on gut feel. Here's the actual decision tree.",
