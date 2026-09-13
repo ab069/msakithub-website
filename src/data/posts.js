@@ -1,5 +1,25 @@
 export const posts = [
   {
+    slug: 'low-code-where-it-stops',
+    title: 'Low-Code Platforms Are Eating the Easy 80% — Here\'s Where They Stop',
+    excerpt:
+      'Low-code is projected to power most new apps by 2026. Here\'s an honest look at what it\'s actually good for, and where custom development still wins.',
+    category: 'Technology',
+    date: 'SEP 13 2026',
+    read: '6 MIN',
+    featured: false,
+    image: '/blog/low-code-where-it-stops.png',
+    author: 'MSAK IT Hub Team',
+    body: [
+      'Low-code and no-code platforms have earned their reputation. For a huge share of business software — internal forms, simple approval workflows, a basic customer portal — a drag-and-drop builder genuinely gets the job done faster and cheaper than writing it from scratch. Analysts now expect these tools to power the majority of new business applications, and that\'s not hype; it reflects a real shift in where custom engineering time is worth spending.',
+      'The honest way to think about it is as a spectrum, not a binary. On one end sits software where the process is standard and the differentiation is zero — expense approvals, basic scheduling, a simple CRUD app for tracking inventory counts. A no-code platform handles this well, and paying a development team to build it from scratch is usually money spent proving a point rather than solving a problem.',
+      'The spectrum breaks down once a business process has real edge cases, needs to integrate deeply with other systems in ways the platform doesn\'t anticipate, or is actually part of the competitive advantage. A restaurant chain\'s recipe-costing engine, a retailer\'s custom loyalty logic, a marketplace\'s matching algorithm — these are exactly the places where a no-code platform\'s constraints start showing up as friction, then as workarounds, then as a rebuild.',
+      'The failure mode we see most often isn\'t choosing no-code — it\'s not noticing the moment a no-code build has quietly become the thing the whole business depends on, built on a foundation that was never meant to bear that weight. Data models that made sense for a simple form become unworkable once five departments depend on them. Automation that took an afternoon to set up takes a week to debug when it breaks silently.',
+      'The practical filter: if you could hand the finished product to a competitor and it would help them exactly as much as it helps you, no-code is probably the right call. If the software itself is part of why customers choose you, or the process it encodes is unusual enough that a generic platform fights you at every step, that\'s the signal to talk to a development team before — not after — the no-code version becomes load-bearing.',
+    ],
+  },
+
+  {
     slug: 'agentic-ai-software-development-2026',
     title: 'Agentic AI Is Changing How Software Gets Built in 2026',
     excerpt:
