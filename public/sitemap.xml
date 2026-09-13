@@ -31,6 +31,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://msakithub.com/faq</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://msakithub.com/contact</loc>
     <lastmod>2026-09-13</lastmod>
     <changefreq>monthly</changefreq>
