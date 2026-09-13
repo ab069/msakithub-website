@@ -1,20 +1,5 @@
 [
   {
-    "slug": "cloud-native-is-the-baseline",
-    "title": "Cloud-Native Isn't a Trend Anymore — It's the Baseline",
-    "excerpt": "Cloud-native architecture has quietly stopped being the 'modern' choice and become the default expectation. Here's what that shift actually means for a new project.",
-    "category": "Technology",
-    "read": "6 MIN",
-    "author": "MSAK IT Hub Team",
-    "body": [
-      "For years, \"cloud-native\" was the answer to a specific question: how do we build for scale we might reach someday? In 2026, that framing is outdated. Cloud-native — services that assume elastic infrastructure, deploy independently, and scale horizontally without a rewrite — has stopped being the ambitious choice and become the default one, even for projects that will never need massive scale.",
-      "The reason isn't really about scale at all. It's about total cost of ownership. A self-hosted server needs someone to patch it, back it up, monitor it and eventually replace the hardware. A cloud-native serverless function needs none of that — it scales down to zero cost when nobody's using it and scales up automatically when they are, without anyone getting paged at 2am to add capacity.",
-      "The practical shift this creates: architecture decisions that used to be deferred (\"we'll worry about scaling later\") now get made correctly from day one, because the cost of doing it right — a proper managed database, serverless functions instead of a single always-on server, infrastructure-as-code instead of manual server configuration — is close enough to the cost of doing it the old way that there's no longer a strong reason to defer it.",
-      "This doesn't mean every project needs Kubernetes and a service mesh on day one — that's the opposite failure, over-engineering a simple product because cloud-native became a checkbox rather than a judgment call. The actual skill is knowing which pieces of cloud-native architecture earn their complexity for a given project's real requirements, and which are cargo-culted because a blog post said so.",
-      "For a business evaluating a new software partner in 2026, the useful question isn't \"do you build cloud-native\" — that should be assumed. It's \"what's a piece of cloud infrastructure you deliberately didn't use on a recent project, and why.\" A team that can answer that concretely understands the trade-offs. A team that can't is probably applying the same stack to every project regardless of whether it fits."
-    ]
-  },
-  {
     "slug": "how-to-estimate-a-software-project",
     "title": "How to Actually Estimate a Software Project (Without Lying to Anyone)",
     "excerpt": "Most software estimates are wrong in the same predictable ways. Here's the process that produces numbers a client can actually plan around.",

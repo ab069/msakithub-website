@@ -127,16 +127,9 @@ ${bodyLines}
   writeFileSync(POSTS_PATH, updated, 'utf8');
 }
 
-function main() {
-  if (!existsSync(QUEUE_PATH)) {
-    console.log('No queue.json found — nothing to publish.');
-    return;
-  }
+function publishOne() {
   const queue = JSON.parse(readFileSync(QUEUE_PATH, 'utf8'));
-  if (queue.length === 0) {
-    console.log('Queue is empty — nothing to publish. Write more articles into content/queue.json.');
-    return;
-  }
+  if (queue.length === 0) return null;
 
   const entry = queue.shift();
   console.log(`Publishing: ${entry.slug}`);
@@ -163,11 +156,33 @@ function main() {
   );
   execSync('git push origin main', { cwd: ROOT, stdio: 'inherit' });
 
-  console.log('');
   console.log(`Published: ${url}`);
   console.log(`${queue.length} article(s) left in the queue.`);
   console.log('');
-  console.log('Next: open Google Search Console -> URL Inspection -> paste the URL above -> Request Indexing.');
+  return url;
+}
+
+function main() {
+  const count = Math.max(1, parseInt(process.argv[2] ?? '1', 10) || 1);
+  if (!existsSync(QUEUE_PATH)) {
+    console.log('No queue.json found — nothing to publish.');
+    return;
+  }
+
+  const publishedUrls = [];
+  for (let i = 0; i < count; i++) {
+    const url = publishOne();
+    if (!url) {
+      console.log('Queue is empty — nothing more to publish. Write more articles into content/queue.json.');
+      break;
+    }
+    publishedUrls.push(url);
+  }
+
+  if (publishedUrls.length > 0) {
+    console.log(`Published ${publishedUrls.length} article(s) this run.`);
+    console.log('Next: open Google Search Console -> URL Inspection -> Request Indexing for each URL above (batch this weekly, not per-run).');
+  }
 }
 
 main();
