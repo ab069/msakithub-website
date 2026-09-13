@@ -93,7 +93,17 @@ async function main() {
     ...posts.map((p) => `/blog/${p.slug}`),
   ];
 
-  const chromePath = findChrome();
+  let chromePath;
+  try {
+    chromePath = findChrome();
+  } catch (err) {
+    // Vercel's build image has no Chrome binary. Skip prerendering rather
+    // than failing the whole deploy — the SPA still works for real visitors
+    // via the vercel.json rewrite; only crawlers lose the prerendered HTML
+    // until this runs somewhere Chrome is available (e.g. locally).
+    console.warn(`Skipping prerender: ${err.message}`);
+    return;
+  }
 
   console.log(`Starting static preview server on ${BASE} ...`);
   const viteBin = join(ROOT, 'node_modules', 'vite', 'bin', 'vite.js');
