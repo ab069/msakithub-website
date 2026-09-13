@@ -1,5 +1,25 @@
 export const posts = [
   {
+    slug: 'why-your-mvp-should-be-boring',
+    title: 'Why Your MVP Should Be Boring (And What That Actually Means)',
+    excerpt:
+      'The instinct to make an MVP impressive is exactly what kills MVPs. A practical case for building something deliberately unimpressive first.',
+    category: 'Playbook',
+    date: 'SEP 13 2026',
+    read: '5 MIN',
+    featured: false,
+    image: '/blog/why-your-mvp-should-be-boring.png',
+    author: 'MSAK IT Hub Team',
+    body: [
+      'The instinct behind most failed MVPs is understandable: a founder wants the first version to feel like proof the vision works, so it accumulates polish, edge cases and secondary features that make it feel more complete — and take three times longer to ship than the version that would have actually answered the question that mattered.',
+      '"Boring" in this context means built from well-understood, unglamorous technology, scoped to the single core loop the business depends on, with every feature that doesn\'t directly test the core hypothesis deliberately cut. A boring MVP for a marketplace is a form, a list, and a way to complete a transaction — not a recommendation engine nobody\'s asked for yet.',
+      'The reason this matters isn\'t just speed, though speed matters. It\'s that an MVP\'s entire job is to produce a signal — do real users actually want this, and will they behave the way the business plan assumes — and every feature added beyond the minimum needed to produce that signal is time spent not getting an answer to the question that determines whether the rest of the plan makes sense.',
+      'The failure mode on the other side is real too: an MVP so minimal it can\'t produce a meaningful signal at all, because it\'s missing the one feature that would have made a real user actually complete the loop. "Boring" doesn\'t mean "broken" — it means unglamorous, not incomplete. The discipline is knowing which corner absolutely cannot be cut versus which ones are aesthetic.',
+      'The practical test before building anything: for each proposed feature, ask whether cutting it would prevent the MVP from testing its core hypothesis, or would just make it feel more finished. Cut everything in the second category, no matter how tempting, and build the smallest boring version of the first category as fast as the team honestly can.',
+    ],
+  },
+
+  {
     slug: 'choosing-a-database-for-a-new-saas',
     title: 'Database Choices for a New SaaS: Postgres, MySQL, or Something Else?',
     excerpt:
