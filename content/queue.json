@@ -1,17 +1,1 @@
-[
-  {
-    "slug": "how-we-structure-a-fixed-price-contract",
-    "title": "How We Structure a Fixed-Price Software Contract So Nobody Gets Burned",
-    "excerpt": "Fixed-price contracts get a bad reputation because most of them are structured badly. Here's a structure that actually protects both sides.",
-    "category": "Playbook",
-    "read": "6 MIN",
-    "author": "MSAK IT Hub Team",
-    "body": [
-      "Fixed-price software contracts have a bad reputation, and it's mostly earned — by contracts that fix the price without actually fixing the scope, leaving one side or the other exposed the moment reality diverges from the plan. A fixed-price contract done properly protects both parties. One done carelessly protects neither.",
-      "The foundation is a scope document detailed enough that both sides could hand it to a third party and get the same understanding of what's being built. Vague scope (\"a booking system with admin features\") is where fixed-price contracts go to die, because it leaves too much room for the client to reasonably expect more than the vendor priced, and for the vendor to reasonably deliver less than the client expected.",
-      "On top of clear scope, a workable contract needs a defined, numbered change-request process — not as bureaucracy, but as the mechanism that keeps scope changes from silently expanding the project for free. When new requirements surface mid-build (and they usually do, reasonably), each one gets scoped and priced on its own, with the client deciding whether it's worth the addition, rather than it quietly becoming an unpaid extension of the original quote.",
-      "Milestone-based payment tied to demonstrable, working software — not just time elapsed — is the other piece that makes fixed-price work for both sides. The client isn't paying for effort they can't see; the vendor isn't carrying the full risk of the project until a single final payment at the end. Each milestone is a checkpoint where both sides can confirm the project is still tracking to the agreed scope.",
-      "Done this way, a fixed-price contract isn't a bet against the unknown — it's a structure that makes the unknown visible and priceable as it appears, instead of pretending it won't. That's the version worth signing, and the version worth offering."
-    ]
-  }
-]
+[]
