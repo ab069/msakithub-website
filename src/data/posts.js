@@ -1,5 +1,25 @@
 export const posts = [
   {
+    slug: 'choosing-a-database-for-a-new-saas',
+    title: 'Database Choices for a New SaaS: Postgres, MySQL, or Something Else?',
+    excerpt:
+      'The database decision gets made too fast, or overthought into paralysis. A practical framework for choosing.',
+    category: 'Technology',
+    date: 'SEP 13 2026',
+    read: '6 MIN',
+    featured: false,
+    image: '/blog/choosing-a-database-for-a-new-saas.png',
+    author: 'MSAK IT Hub Team',
+    body: [
+      'For the large majority of new SaaS products, the database decision is simpler than the internet makes it look: a relational database — PostgreSQL specifically, for most new projects — is the right default, and the interesting decisions happen around it, not instead of it.',
+      'PostgreSQL earns default status because it handles the two things almost every SaaS product needs well: structured, relational data with real integrity guarantees (a subscription belongs to exactly one account, an invoice line item belongs to exactly one invoice), and enough flexibility — native JSON columns, full-text search, extensions for geospatial data — to cover the cases that used to require a second, specialized database.',
+      'MySQL remains a perfectly reasonable choice, particularly for teams with existing MySQL expertise or hosting constraints that favor it, but it rarely offers a concrete advantage over Postgres for a new project in 2026 — the historical performance gaps that used to matter have mostly closed, and Postgres\'s richer feature set makes it the safer default when there\'s no existing reason to prefer MySQL.',
+      'The cases that genuinely call for something else are specific, not vibes-based: a product that\'s fundamentally about traversing relationships (a social graph, a recommendation engine) benefits from a graph database like Neo4j; a product ingesting massive volumes of time-series data (IoT sensor readings, application metrics) benefits from a time-series-optimized store; a product with genuinely unstructured, schema-varying documents at the core of its model might reach for MongoDB. These are the exception, not the starting point.',
+      'The mistake we see most often isn\'t picking the wrong database — it\'s picking a specialized one prematurely, before the product has proven it actually needs the specialization, and paying an ongoing operational tax (a second system to run, back up and monitor) for a problem that hadn\'t actually materialized yet. Start with Postgres. Add a specialized store only once a specific, measured need for it shows up.',
+    ],
+  },
+
+  {
     slug: 'what-a-discovery-call-should-cover',
     title: 'What a Discovery Call Should Actually Cover Before You Get a Software Quote',
     excerpt:
