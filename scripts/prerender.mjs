@@ -87,6 +87,7 @@ async function main() {
     '/projects',
     '/blog',
     '/contact',
+    '/faq',
     '/privacy',
     ...projects.filter((p) => p.slug).map((p) => `/projects/${p.slug}`),
     ...posts.map((p) => `/blog/${p.slug}`),

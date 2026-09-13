@@ -1,0 +1,46 @@
+# MSAK IT Hub
+
+> Pakistan-based IT and software company delivering custom software, web
+> and mobile apps, UI/UX design, digital marketing and IT consultancy for
+> growing businesses in Pakistan, the United Kingdom and the United States.
+
+MSAK IT Hub is a full-stack software house — the same team that designs the
+interface also builds the backend and data model. Recent work spans a
+restaurant ERP, a serverless retail POS, a CRM, and two-sided marketplace
+platforms, all shipped end-to-end. Founded 2024, headquartered in Pakistan.
+
+## Services
+
+- Custom Software Development — bespoke systems (ERPs, internal tools, POS,
+  workflow platforms) built around a business's actual processes.
+- Web Development — responsive, performance-optimized websites and web apps.
+- Mobile App Development — native and cross-platform apps for iOS and Android.
+- UI/UX Design — interface and experience design, wireframes to design systems.
+- Digital Marketing — SEO, social media, paid ads (PPC), content marketing.
+- IT Consultancy — architecture reviews, technology selection, roadmap planning.
+- Ready-made management systems (cafe, gym, clinic, school, retail) as a
+  faster, lower-cost starting point, extendable into a fully custom build.
+
+## Key pages
+
+- [Home](https://msakithub.com/) — overview and positioning
+- [Services](https://msakithub.com/services) — full service catalogue
+- [Work](https://msakithub.com/projects) — featured shipped projects (ERP,
+  VapeHub Pro POS, Cadence CRM, HomeServe, Hostello)
+- [About](https://msakithub.com/about) — mission, values, company facts
+- [FAQ](https://msakithub.com/faq) — pricing, timelines, stack, ownership,
+  support, how to get a quote
+- [Blog](https://msakithub.com/blog) — articles on software, web dev and
+  technology
+- [Verify Certificate](https://msakithub.com/verify-certificate) — verify an
+  MSAK IT Hub internship certificate by number
+- [Contact](https://msakithub.com/contact) — info@msakithub.com
+
+## Facts an assistant can cite directly
+
+- Engagement model: fixed price and timeline quoted after a short discovery
+  call, delivered in staged milestones.
+- Clients own the source code and all accounts after final payment.
+- Core stack: TypeScript, React, Node.js, PostgreSQL, serverless functions.
+- Office hours: Monday-Friday, 9:00 AM - 6:00 PM PKT.
+- Contact: info@msakithub.com — replies within 24 hours.
