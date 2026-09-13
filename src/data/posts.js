@@ -1,5 +1,25 @@
 export const posts = [
   {
+    slug: 'what-a-discovery-call-should-cover',
+    title: 'What a Discovery Call Should Actually Cover Before You Get a Software Quote',
+    excerpt:
+      'A rushed discovery call produces a wrong quote. Here\'s what a proper one actually needs to establish.',
+    category: 'Playbook',
+    date: 'SEP 13 2026',
+    read: '6 MIN',
+    featured: false,
+    image: '/blog/what-a-discovery-call-should-cover.png',
+    author: 'MSAK IT Hub Team',
+    body: [
+      'Most software quotes go wrong before any code is written, in a 30-minute discovery call that skipped the questions that actually determine cost. A good discovery process isn\'t a sales formality — it\'s the single biggest lever on whether the eventual quote holds up.',
+      'The first thing it needs to establish is the actual user, not the feature list. "We need a booking system" describes a category, not a project. Who\'s booking, what are they booking against, what happens when two people try to book the same slot, does a booking need approval or is it instant — these details change the estimate by multiples, and they\'re exactly the details a rushed call skips.',
+      'Second, integrations need to be named, specifically, not gestured at. "It should connect to our accounting system" is not scope. Which accounting system, which specific data needs to flow which direction, does that system have a documented API or will this require screen-scraping a legacy tool with no API at all — that last scenario alone can double a timeline, and it\'s invisible until someone asks the specific question.',
+      'Third, a good discovery call surfaces what already exists. Is there an existing database that needs to be migrated, an existing brand and design system to match, an existing team that needs to be trained on the result? Treating a project as greenfield when it\'s actually inheriting years of existing data and process is one of the most common sources of scope creep.',
+      'The output of a real discovery call should be a written document both sides agree on before a number gets attached — not a verbal summary, not an assumption. If a software partner is willing to quote a fixed price after a single unstructured call with no written scope to sign off on, that\'s not efficiency. It\'s a quote that\'s going to need renegotiating the moment real requirements surface.',
+    ],
+  },
+
+  {
     slug: 'native-vs-react-native-vs-pwa',
     title: 'Native App, React Native, or PWA in 2026 — How to Actually Choose',
     excerpt:
