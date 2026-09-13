@@ -1,5 +1,25 @@
 export const posts = [
   {
+    slug: 'how-to-estimate-a-software-project',
+    title: 'How to Actually Estimate a Software Project (Without Lying to Anyone)',
+    excerpt:
+      'Most software estimates are wrong in the same predictable ways. Here\'s the process that produces numbers a client can actually plan around.',
+    category: 'Development',
+    date: 'SEP 13 2026',
+    read: '7 MIN',
+    featured: false,
+    image: '/blog/how-to-estimate-a-software-project.png',
+    author: 'MSAK IT Hub Team',
+    body: [
+      'Every software estimate that goes badly wrong follows the same pattern: someone was asked "how long will this take" before anyone had actually figured out what "this" was. The estimate gets treated as a promise, the scope keeps expanding quietly during discovery, and by the time the real requirements are clear, the number everyone anchored on is already wrong.',
+      'The fix isn\'t a better estimation formula — it\'s sequencing. Scope has to be nailed down, in writing, with the client\'s sign-off, before a number gets attached to it. That means a real discovery phase: user flows mapped out, edge cases discussed out loud (what happens when a payment fails halfway through, what happens with a duplicate account), and integrations identified by name, not by "probably straightforward."',
+      'Once scope is fixed, the estimate itself should be built from historical data, not intuition. How long did the last three features of similar complexity actually take, measured from the same team, on the same stack? Gut-feel estimates from an experienced developer are usually optimistic by a predictable margin, because they estimate the coding time and forget the surrounding work — code review, testing, deployment, the two days lost to a dependency that changed its API.',
+      'The number that goes to the client should carry an explicit buffer for unknowns, and the client should know that\'s what it is. A 20-30% contingency isn\'t padding to protect the vendor; it\'s an honest acknowledgment that some fraction of any project involves discovering something during build that wasn\'t visible during planning. Hiding that buffer inside a padded number and pretending it\'s precise is how trust erodes the first time a project runs long.',
+      'The version of this that actually works in practice: fixed price and fixed scope, agreed together, with a clear, pre-agreed process for handling scope changes (a numbered change request, priced on its own, not silently absorbed into the original estimate). That\'s the difference between an estimate that holds up and one that becomes an argument three weeks before launch.',
+    ],
+  },
+
+  {
     slug: 'cloud-native-is-the-baseline',
     title: 'Cloud-Native Isn\'t a Trend Anymore — It\'s the Baseline',
     excerpt:
