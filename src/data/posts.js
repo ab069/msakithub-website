@@ -1,5 +1,25 @@
 export const posts = [
   {
+    slug: 'native-vs-react-native-vs-pwa',
+    title: 'Native App, React Native, or PWA in 2026 — How to Actually Choose',
+    excerpt:
+      'The mobile stack decision gets made too early, on gut feel. Here\'s the actual decision tree.',
+    category: 'Development',
+    date: 'SEP 13 2026',
+    read: '6 MIN',
+    featured: false,
+    image: '/blog/native-vs-react-native-vs-pwa.png',
+    author: 'MSAK IT Hub Team',
+    body: [
+      'The native-vs-cross-platform mobile debate has been running for a decade, and the honest answer in 2026 is that it depends on questions most founders don\'t ask early enough: how much of the app lives on the phone\'s own hardware capabilities, how much design polish does the brand actually require, and how tight is the budget for maintaining two separate codebases.',
+      'Fully native (Swift for iOS, Kotlin for Android) is still the right call when an app leans hard on platform-specific hardware — advanced camera work, background processing, deep hardware integrations like Bluetooth peripherals or ARKit — or when the brand\'s design language depends on interactions that feel distinctly iOS or distinctly Android. It\'s also simply the most future-proof option, since it never depends on a cross-platform framework\'s release cycle catching up to a new OS feature.',
+      'React Native earns its place for the much larger category of apps that are primarily about business logic and standard UI patterns — forms, lists, a feed, checkout, chat. One codebase, one team, roughly 70-90% code reuse between platforms, at the cost of occasionally needing a native module for something the framework doesn\'t cover yet. For most business apps, that trade-off is clearly worth it.',
+      'A Progressive Web App is the most underused option of the three. If the product doesn\'t strictly need to live in the App Store or Play Store — no push for discoverability through app store search, no hardware dependency — a PWA gets you installable-on-homescreen, works-offline behavior from the same codebase as the website, with zero app store review process standing between a fix and its users.',
+      'The decision that actually matters happens before any of this: does the product need to be found through app store search, does it need deep OS integration, and how many platforms does the team realistically have the budget to maintain well. Answer those three honestly first, and the framework choice mostly makes itself.',
+    ],
+  },
+
+  {
     slug: 'real-cost-of-technical-debt',
     title: 'The Real Cost of Technical Debt — And When Paying It Down Is Worth It',
     excerpt:
