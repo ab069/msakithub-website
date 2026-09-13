@@ -40,6 +40,7 @@ export default function BlogPost() {
           title: post.title,
           description: post.excerpt,
           path: `/blog/${post.slug}`,
+          image: post.image ? `https://msakithub.com${post.image}` : undefined,
           type: 'article',
           article: {
             publishedTime: publishedIso,
@@ -60,7 +61,7 @@ export default function BlogPost() {
             'datePublished': publishedIso || post.date,
             'dateModified': publishedIso || post.date,
             'inLanguage': 'en',
-            'image': 'https://msakithub.com/brand/banner.png',
+            'image': post.image ? `https://msakithub.com${post.image}` : 'https://msakithub.com/brand/banner.png',
             'mainEntityOfPage': { '@type': 'WebPage', '@id': `https://msakithub.com/blog/${post.slug}` },
             'isPartOf': { '@id': 'https://msakithub.com/#website' },
             'speakable': {
@@ -123,6 +124,14 @@ export default function BlogPost() {
           <span>{post.author}</span>
         </div>
       </section>
+
+      {post.image && (
+        <section className="max-w-site mx-auto px-5 md:px-10 pt-12 md:pt-16">
+          <div className="aspect-[16/9] w-full overflow-hidden border border-line" data-reveal>
+            <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+          </div>
+        </section>
+      )}
 
       <section className="max-w-site mx-auto px-5 md:px-10 py-16 md:py-24">
         <div className="grid lg:grid-cols-[minmax(0,1fr)_320px] gap-12 lg:gap-20">

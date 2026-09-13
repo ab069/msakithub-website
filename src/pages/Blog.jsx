@@ -120,11 +120,11 @@ export default function Blog() {
           <Link to={`/blog/${featured.slug}`} className="feat-card group block" data-reveal data-cursor="read">
             <div className="grid md:grid-cols-[1.1fr_1fr] gap-8 md:gap-16">
               <div className="relative">
-                <div className="feat-visual">
-                  <div className="feat-glow" />
+                <div className="feat-visual" style={featured.image ? { backgroundImage: `url(${featured.image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : undefined}>
+                  {!featured.image && <div className="feat-glow" />}
                   <span className="mono text-[10px] uppercase tracking-[0.22em] text-white/70 absolute top-4 left-4">{featured.category}</span>
                   <span className="mono text-[10px] uppercase tracking-[0.22em] text-white/70 absolute top-4 right-4">{featured.read}</span>
-                  <span className="font-display feat-mark">FT</span>
+                  {!featured.image && <span className="font-display feat-mark">FT</span>}
                   <span className="mono text-[10px] uppercase tracking-[0.22em] text-white/70 absolute bottom-4 left-4">{featured.date}</span>
                 </div>
               </div>
