@@ -1,5 +1,25 @@
 export const posts = [
   {
+    slug: 'api-first-design-matters',
+    title: 'API-First Design: Why It Matters Even If You\'re Not Building a Platform',
+    excerpt:
+      'API-first isn\'t just for companies selling API access. Here\'s why it\'s a better default for almost any new software project.',
+    category: 'Technology',
+    date: 'SEP 13 2026',
+    read: '5 MIN',
+    featured: false,
+    image: '/blog/api-first-design-matters.png',
+    author: 'MSAK IT Hub Team',
+    body: [
+      'API-first design gets pitched as something only relevant to companies whose product literally is an API — Stripe, Twilio, that category. That framing undersells it. API-first is a discipline about designing the data and logic layer as a clean, documented contract before building any specific interface on top of it, and that discipline pays off even when the only consumer of that API is your own web app.',
+      'The concrete benefit shows up the first time a second interface needs to exist — a mobile app alongside the web app, an admin dashboard alongside the customer-facing product, a future integration a partner asks for. If the business logic was built API-first, that second interface is a new client talking to an existing, well-defined contract. If it wasn\'t, that second interface usually means duplicating logic, or worse, reaching directly into a database structure that was never designed to be touched from two places.',
+      'It also forces a useful discipline earlier than most teams naturally apply it: thinking clearly about what a piece of data actually represents and how it should be validated, independent of how any particular screen happens to display it. Business logic that\'s tangled up with the specific UI it was first built for tends to accumulate assumptions that break the moment the UI changes.',
+      'The cost is real and worth naming honestly: API-first takes more upfront design time than wiring a form directly to a database call, and for a genuinely disposable prototype meant to be thrown away in a week, that upfront cost isn\'t worth paying. The judgment call is recognizing which projects are actually disposable versus which ones are an MVP that\'s quietly going to become the real product.',
+      'For anything expected to survive past its first version — which is most software a business actually invests in building — API-first is the cheaper path in the long run, even though it doesn\'t feel that way in week one.',
+    ],
+  },
+
+  {
     slug: 'why-your-mvp-should-be-boring',
     title: 'Why Your MVP Should Be Boring (And What That Actually Means)',
     excerpt:
