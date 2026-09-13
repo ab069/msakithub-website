@@ -1,5 +1,25 @@
 export const posts = [
   {
+    slug: 'edge-computing-for-non-engineers',
+    title: 'Edge Computing for Non-Engineers: What It Is and When You Actually Need It',
+    excerpt:
+      'Edge computing keeps coming up in 2026 tech coverage. Here\'s what it actually means for a business, without the jargon.',
+    category: 'Technology',
+    date: 'SEP 13 2026',
+    read: '5 MIN',
+    featured: false,
+    image: '/blog/edge-computing-for-non-engineers.png',
+    author: 'MSAK IT Hub Team',
+    body: [
+      'Edge computing sounds like infrastructure jargon, but the underlying idea is simple: instead of every request traveling to one central server, wherever that server happens to be, some logic runs on servers physically closer to the person making the request. Less distance for data to travel means a faster response — often the difference between a page that loads instantly and one with a noticeable, if small, delay.',
+      'This matters concretely for any product with users spread across different countries or continents. A single-origin server in one region will always be slower for users on the opposite side of the world, no matter how well-optimized the code is — that\'s a physics problem, not an engineering one. Edge computing is the practical fix: the same logic, replicated to run near each user instead of far from most of them.',
+      'It\'s not automatically necessary. A product used entirely within one country, by users close to wherever the server already lives, gets little practical benefit from edge architecture — the latency it saves was already small. The businesses that benefit most are the ones with a genuinely global or geographically spread-out user base, or content-heavy products (media, e-commerce catalogs) where even small delays measurably affect conversion.',
+      'The other place edge computing earns its keep is simple, high-frequency logic — authentication checks, redirects, A/B test assignment, basic personalization — that doesn\'t need a full database round-trip and benefits from running as close to the user as possible. Modern platforms (Vercel, Cloudflare, AWS\'s edge offerings) make this available without the operational complexity edge computing used to require.',
+      'The practical question for a business evaluating this isn\'t "should we use edge computing" as a blanket yes or no — it\'s "which specific parts of our product are latency-sensitive and used by a geographically spread audience." Apply edge architecture to those parts specifically, and leave the rest running the normal way. That\'s a smaller, more honest project than "rebuild everything to be edge-native."',
+    ],
+  },
+
+  {
     slug: 'api-first-design-matters',
     title: 'API-First Design: Why It Matters Even If You\'re Not Building a Platform',
     excerpt:
