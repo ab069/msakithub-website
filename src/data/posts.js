@@ -1,5 +1,25 @@
 export const posts = [
   {
+    slug: 'agentic-ai-software-development-2026',
+    title: 'Agentic AI Is Changing How Software Gets Built in 2026',
+    excerpt:
+      'AI agents are moving from autocomplete to actually doing the work. What that shift means for how a project gets scoped, built and priced.',
+    category: 'Technology',
+    date: 'SEP 13 2026',
+    read: '7 MIN',
+    featured: true,
+    image: '/blog/agentic-ai-software-development-2026.png',
+    author: 'MSAK IT Hub Team',
+    body: [
+      'For the last few years, "AI in software development" mostly meant autocomplete — a smarter suggestion in the editor, a boilerplate generator, a faster way to write a test. In 2026, that’s shifted. Agentic AI — systems that can plan a multi-step task, execute it, check the result and retry if something fails — has moved from research demos into everyday engineering workflows, and it changes more than just typing speed.',
+      'The practical difference is scope. An autocomplete tool finishes the line you were already writing. An agent can be handed a task — "add an export-to-CSV button to this report screen," "write and run the test suite for this module," "triage this bug report and propose a fix" — and work through it with minimal supervision, checking its own output against the codebase before handing it back. Low-risk, well-defined work like this is where agents are earning trust fastest, because a human is still reviewing the result before it ships.',
+      'This is genuinely useful, and we use it ourselves — but it changes what a development team is actually good at. Industry estimates now put a large share of newly written code as AI-assisted in some form, and the honest read of that number isn’t "developers are being replaced." It’s that the job is shifting toward orchestration: deciding what to build, architecting how the pieces fit together, and reviewing an agent’s output for the judgment calls it can’t make on its own — security implications, edge cases specific to your business, and whether the "correct" answer actually matches what the client needs.',
+      'That shift has a real consequence worth naming honestly: the easy, repetitive work junior engineers used to cut their teeth on is exactly the work agents now do fastest. Teams that lean on AI heavily are hiring fewer juniors for pure implementation work, and the ones they do hire are expected to review AI output critically from day one rather than grow into that skill over a few years. It’s a genuine challenge for the industry, not just a talking point.',
+      'For a client evaluating a software partner in 2026, the useful question isn’t "do you use AI tools" — most serious shops do. It’s "how do you decide what an agent is allowed to touch, and who checks its work." Broad, unsupervised access to a production database or a client’s financial data is a real risk, not a hypothetical one, and a team that can’t clearly explain its review process for AI-assisted work is a team that hasn’t thought hard enough about it yet.',
+      'Our own approach: agents get scoped, reviewable tasks — a specific module, a specific test suite, a specific migration — never unsupervised access to production systems or client data, and every agent-assisted change goes through the same code review a human-written change would. The AI copilot in our own ERP product works the same way: it answers questions against a store’s data, it doesn’t get write access to change that data on its own. The value of agentic AI in 2026 isn’t that it removes the need for engineering judgment. It’s that it frees that judgment up to focus on the parts of a project that actually determine whether it succeeds — the architecture, the edge cases, and whether the thing being built is the right thing at all.',
+    ],
+  },
+  {
     slug: 'future-of-web-development-2025',
     title: 'The Future of Web Development: Trends to Watch in 2025',
     excerpt:
